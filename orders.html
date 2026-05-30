@@ -1,0 +1,100 @@
+<!-- orders.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Orders - Copi.co</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- GOOGLE FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+
+  <!-- LOGO -->
+  <div class="logo">
+    <img src="logo.png" alt="Copi.co Logo">
+  </div>
+
+  <!-- BURGER BUTTON -->
+  <div class="menu-toggle" id="menu-toggle">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav id="navbar">
+
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="settings.html">Settings</a></li>
+      <li><a href="about.html">About Us</a></li>
+    </ul>
+
+  </nav>
+
+</header>
+
+<!-- ORDERS SECTION -->
+<section class="section">
+
+  <h2>Your Orders</h2>
+
+  <ul id="orderList"></ul>
+
+  <button class="clear-btn" onclick="clearOrders()">
+    Clear Orders
+  </button>
+
+</section>
+
+<!-- FOOTER -->
+<footer>
+
+  <div class="socials">
+
+    <h3>Follow Us!</h3>
+
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-tiktok"></i></a>
+
+  </div>
+
+  <div class="copyright">
+    © 2026 Copi.co | All rights reserved.
+  </div>
+
+</footer>
+
+<!-- SCRIPT -->
+<script src="script.js"></script>
+
+<script>
+
+  const menuToggle =
+  document.getElementById("menu-toggle");
+
+  const navbar =
+  document.getElementById("navbar");
+
+  menuToggle.addEventListener("click", () => {
+
+    navbar.classList.toggle("active");
+
+  });
+
+</script>
+
+</body>
+</html>

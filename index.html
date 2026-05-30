@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copi.co</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="homepage">
+
+  <!-- GOOGLE FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
+  
+
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<header>
+
+  <!-- LOGO -->
+  <div class="logo">
+    <img src="logo.png" alt="Copi.co Logo">
+  </div>
+
+  <!-- BURGER BUTTON -->
+  <div class="menu-toggle" id="menu-toggle">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  <!-- NAVIGATION -->
+  <nav id="navbar">
+
+    <ul>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="orders.html">Orders</a></li>
+      <li><a href="settings.html">Settings</a></li>
+      <li><a href="about.html">About Us</a></li>
+    </ul>
+
+  </nav>
+
+<script>
+
+  const menuToggle =
+  document.getElementById("menu-toggle");
+
+  const navbar =
+  document.getElementById("navbar");
+
+  menuToggle.addEventListener("click", () => {
+
+    navbar.classList.toggle("active");
+
+  });
+
+</script>
+
+</header>
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <!-- LEFT -->
+      <div class="hero-text">
+
+        <h1>COPI.CO</h1>
+
+        <p>
+          Welcome to Copi.co — your trusted retail shop for premium coffee-making ingredients and essentials. 
+          We provide high-quality coffee beans, syrups, milk alternatives, powders, sauces, and brewing supplies perfect for cafés, small businesses, and home brewers. 
+          Our goal is to make every cup special by offering affordable, fresh, and carefully selected products that help coffee lovers create delicious café-style drinks anytime. 
+          At Copi.co, we believe great coffee starts with great ingredients.
+        </p>
+
+        <div class="hero-buttons">
+
+    <a href="menu.html" class="primary-btn">
+        Shop Now
+    </a>
+
+</div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+
+    <div class="socials">
+
+      <h3>Follow Us!</h3>
+
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-tiktok"></i></a>
+
+    </div>
+
+    <div class="copyright">
+      © 2026 Copi.co | All rights reserved.
+    </div>
+
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!-- menu.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu - Copi.co</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <!-- GOOGLE FONT -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+<header>
+
+  <!-- LOGO -->
+  <div class="logo">
+    <img src="logo.png" alt="logo">
+  </div>
+
+  <!-- BURGER -->
+  <div class="menu-toggle" id="menu-toggle">
+    <i class="fas fa-bars"></i>
+  </div>
+
+  <!-- NAV -->
+  <nav id="navbar">
+
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="orders.html">Orders</a></li>
+      <li><a href="settings.html">Settings</a></li>
+      <li><a href="about.html">About Us</a></li>
+    </ul>
+
+  </nav>
+
+</header>
+
+<!-- MENU SECTION -->
+<section class="section">
+
+  <h2 class="menu-title">Our Coffee Menu</h2>
+
+  <div class="menu-container">
+
+    <!-- 1 -->
+    <div class="card">
+      <img src="https://pngimg.com/d/coffee_PNG9298.png">
+      <h3>Espresso</h3>
+      <p>Strong premium coffee shot.</p>
+      <span>₱120</span>
+      <button onclick="addOrder('Espresso')">Add Order</button>
+    </div>
+
+    <!-- 2 -->
+    <div class="card">
+      <img src="https://pngimg.com/d/coffee_PNG16874.png">
+      <h3>Latte</h3>
+      <p>Creamy milk coffee blend.</p>
+      <span>₱150</span>
+      <button onclick="addOrder('Latte')">Add Order</button>
+    </div>
+
+    <!-- 3 -->
+    <div class="card">
+      <img src="https://pngimg.com/d/coffee_PNG16870.png">
+      <h3>Cappuccino</h3>
+      <p>Foamy classic coffee drink.</p>
+      <span>₱160</span>
+      <button onclick="addOrder('Cappuccino')">Add Order</button>
+    </div>
+
+    <!-- 4 -->
+    <div class="card">
+      <img src="https://pngimg.com/d/coffee_PNG16876.png">
+      <h3>Mocha</h3>
+      <p>Chocolate flavored coffee.</p>
+      <span>₱170</span>
+      <button onclick="addOrder('Mocha')">Add Order</button>
+    </div>
+
+    <!-- 5 -->
+    <div class="card">
+      <img src="https://pngimg.com/d/coffee_PNG16873.png">
+      <h3>Americano</h3>
+      <p>Smooth and bold coffee.</p>
+      <span>₱140</span>
+      <button onclick="addOrder('Americano')">Add Order</button>
+    </div>
+
+    <!-- 6 -->
+    <div class="card">
+      <img src="https://pngimg.com/d/coffee_PNG16875.png">
+      <h3>Caramel Macchiato</h3>
+      <p>Sweet caramel espresso drink.</p>
+      <span>₱190</span>
+      <button onclick="addOrder('Caramel Macchiato')">
+        Add Order
+      </button>
+    </div>
+
+    <!-- 7 -->
+    <div class="card">
+      <img src="https://pngimg.com/d/coffee_PNG9295.png">
+      <h3>Vanilla Latte</h3>
+      <p>Sweet vanilla creamy latte.</p>
+      <span>₱180</span>
+      <button onclick="addOrder('Vanilla Latte')">
+        Add Order
+      </button>
+    </div>
+
+    <!-- 8 -->
+    <div class="card">
+      <img src="https://pngimg.com/d/coffee_PNG9299.png">
+      <h3>Hazelnut Coffee</h3>
+      <p>Nutty flavored coffee blend.</p>
+      <span>₱175</span>
+      <button onclick="addOrder('Hazelnut Coffee')">
+        Add Order
+      </button>
+    </div>
+
+    <!-- 9 -->
+    <div class="card">
+      <img src="https://pngimg.com/d/coffee_PNG16872.png">
+      <h3>Iced Coffee</h3>
+      <p>Refreshing cold brew drink.</p>
+      <span>₱160</span>
+      <button onclick="addOrder('Iced Coffee')">
+        Add Order
+      </button>
+    </div>
+
+    <!-- 10 -->
+    <div class="card">
+      <img src="https://pngimg.com/d/coffee_PNG16877.png">
+      <h3>Cold Brew</h3>
+      <p>Slow brewed smooth coffee.</p>
+      <span>₱200</span>
+      <button onclick="addOrder('Cold Brew')">
+        Add Order
+      </button>
+    </div>
+
+  </div>
+
+</section>
+
+<script src="script.js"></script>
+
+</body>
+</html>
