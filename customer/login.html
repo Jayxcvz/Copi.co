@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login / Register - Copi.co</title>
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <a href="index.html" class="logo">
+      <img src="../assets/logo.png" alt="Copi.co Logo">
+      <span class="logo-text">COPI.CO</span>
+    </a>
+
+    <div class="menu-toggle" id="menu-toggle">
+      <i class="fas fa-bars"></i>
+    </div>
+
+    <nav id="navbar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="orders.html">Orders</a></li>
+        <li><a href="settings.html">Settings</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-actions">
+      <button class="icon-btn" id="user-profile-btn" title="Login / Register">
+        <i class="fas fa-user"></i>
+      </button>
+      <button class="icon-btn" onclick="toggleCart()" title="Shopping Cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="badge cart-badge">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- AUTH WRAPPER -->
+  <div class="auth-wrapper">
+    <div class="auth-card">
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tab-login" onclick="switchAuthTab('login')">Login</button>
+        <button class="auth-tab" id="tab-register" onclick="switchAuthTab('register')">Register</button>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <div id="form-login-container">
+        <div class="auth-header">
+          <h2>Welcome Back!</h2>
+          <p>Sign in to order your favorite coffee blends.</p>
+        </div>
+        <form onsubmit="handleLogin(event)">
+          <div class="form-group">
+            <label for="login-username">Username</label>
+            <div class="input-wrapper">
+              <i class="fas fa-user"></i>
+              <input type="text" id="login-username" class="form-input" placeholder="Enter username" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <div class="input-wrapper">
+              <i class="fas fa-lock"></i>
+              <input type="password" id="login-password" class="form-input" placeholder="Enter password" required>
+              <i class="fas fa-eye pwd-toggle" onclick="togglePasswordVisibility('login-password')"></i>
+            </div>
+          </div>
+          <button type="submit" class="auth-btn">Sign In</button>
+        </form>
+      </div>
+
+      <!-- REGISTER FORM -->
+      <div id="form-register-container" style="display: none;">
+        <div class="auth-header">
+          <h2>Create Account</h2>
+          <p>Join Copi.co to start ordering and get rewards.</p>
+        </div>
+        <form onsubmit="handleRegister(event)">
+          <div class="form-group">
+            <label for="reg-fullname">Full Name</label>
+            <div class="input-wrapper">
+              <i class="fas fa-address-card"></i>
+              <input type="text" id="reg-fullname" class="form-input" placeholder="Enter full name" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="reg-username">Username</label>
+            <div class="input-wrapper">
+              <i class="fas fa-user"></i>
+              <input type="text" id="reg-username" class="form-input" placeholder="Choose username" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="reg-email">Email Address</label>
+            <div class="input-wrapper">
+              <i class="fas fa-envelope"></i>
+              <input type="email" id="reg-email" class="form-input" placeholder="Enter email" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="reg-password">Password</label>
+            <div class="input-wrapper">
+              <i class="fas fa-lock"></i>
+              <input type="password" id="reg-password" class="form-input" placeholder="Create password" required>
+              <i class="fas fa-eye pwd-toggle" onclick="togglePasswordVisibility('reg-password')"></i>
+            </div>
+          </div>
+          <button type="submit" class="auth-btn">Sign Up</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHOPPING CART SIDEBAR -->
+  <div class="cart-sidebar" id="cart-sidebar">
+    <div class="cart-header">
+      <h2><i class="fas fa-shopping-cart"></i> Your Cart</h2>
+      <button class="close-cart-btn" onclick="toggleCart()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="cart-items" id="cart-items-container"></div>
+    <div class="cart-footer">
+      <div class="cart-summary-row">
+        <span>Subtotal</span>
+        <span id="cart-subtotal">₱0.00</span>
+      </div>
+      <button class="checkout-btn" id="cart-checkout-btn" onclick="openCheckoutModal()" disabled>
+        Proceed to Checkout
+      </button>
+    </div>
+  </div>
+
+  <!-- CHECKOUT MODAL -->
+  <div class="modal-overlay" id="checkout-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Checkout Form</h3>
+        <button class="close-modal-btn" onclick="closeCheckoutModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <form onsubmit="processCheckout(event)">
+        <div class="form-group">
+          <label for="customer-name">Full Name *</label>
+          <input type="text" id="customer-name" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label for="customer-email">Email Address</label>
+          <input type="email" id="customer-email" class="form-input">
+        </div>
+        <div class="form-group">
+          <label for="customer-phone">Phone Number *</label>
+          <input type="tel" id="customer-phone" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label for="customer-address">Delivery Address *</label>
+          <input type="text" id="customer-address" class="form-input" required>
+        </div>
+        
+        <div class="form-group">
+          <label>Payment Method</label>
+          <div class="select-payment">
+            <div class="payment-option selected" onclick="selectPaymentMethod(this, 'Cash')">
+              <i class="fas fa-money-bill-wave"></i>
+              <span>Cash</span>
+            </div>
+            <div class="payment-option" onclick="selectPaymentMethod(this, 'GCash')">
+              <i class="fas fa-mobile-alt"></i>
+              <span>GCash</span>
+            </div>
+            <div class="payment-option" onclick="selectPaymentMethod(this, 'Card')">
+              <i class="fas fa-credit-card"></i>
+              <span>Card</span>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="auth-btn">Place Order</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="socials">
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <div class="copyright">
+      &copy; 2026 Copi.co | All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script>
+    function switchAuthTab(type) {
+      const loginTab = document.getElementById("tab-login");
+      const registerTab = document.getElementById("tab-register");
+      const loginCont = document.getElementById("form-login-container");
+      const registerCont = document.getElementById("form-register-container");
+
+      if (type === 'login') {
+        loginTab.classList.add("active");
+        registerTab.classList.remove("active");
+        loginCont.style.display = "block";
+        registerCont.style.display = "none";
+      } else {
+        loginTab.classList.remove("active");
+        registerTab.classList.add("active");
+        loginCont.style.display = "none";
+        registerCont.style.display = "block";
+      }
+    }
+
+    function togglePasswordVisibility(fieldId) {
+      const field = document.getElementById(fieldId);
+      if (!field) return;
+      const type = field.getAttribute("type") === "password" ? "text" : "password";
+      field.setAttribute("type", type);
+    }
+
+    function handleLogin(event) {
+      event.preventDefault();
+      const username = document.getElementById("login-username").value.trim();
+      const pass = document.getElementById("login-password").value;
+
+      const users = JSON.parse(localStorage.getItem("copico_users")) || [];
+      const user = users.find(u => u.username === username && u.password === pass);
+
+      if (user) {
+        localStorage.setItem("copico_current_user", JSON.stringify(user));
+        alert("Logged in successfully! Welcome " + user.fullname);
+        
+        // Add customer to global customer analytics database
+        let customers = JSON.parse(localStorage.getItem("copico_customers")) || [];
+        const existingCust = customers.find(c => c.username === username);
+        if (!existingCust) {
+          customers.push({
+            username: username,
+            fullname: user.fullname,
+            email: user.email,
+            ordersCount: 0,
+            totalSpent: 0,
+            dateAdded: new Date().toISOString()
+          });
+          localStorage.setItem("copico_customers", JSON.stringify(customers));
+        }
+
+        window.location.href = "menu.html";
+      } else {
+        alert("Invalid username or password!");
+      }
+    }
+
+    function handleRegister(event) {
+      event.preventDefault();
+      const fullname = document.getElementById("reg-fullname").value.trim();
+      const username = document.getElementById("reg-username").value.trim();
+      const email = document.getElementById("reg-email").value.trim();
+      const password = document.getElementById("reg-password").value;
+
+      const users = JSON.parse(localStorage.getItem("copico_users")) || [];
+      const userExists = users.some(u => u.username === username);
+
+      if (userExists) {
+        alert("Username already exists!");
+        return;
+      }
+
+      const newUser = { fullname, username, email, password };
+      users.push(newUser);
+      localStorage.setItem("copico_users", JSON.stringify(users));
+
+      alert("Registration successful! You can now log in.");
+      switchAuthTab('login');
+      document.getElementById("login-username").value = username;
+    }
+  </script>
+</body>
+</html>

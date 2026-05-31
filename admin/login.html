@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Login - Copi.co</title>
+  <link rel="stylesheet" href="admin-style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body class="auth-page">
+
+  <div class="auth-box">
+    <div class="auth-box-header">
+      <img src="../assets/logo.png" alt="Copi.co Logo">
+      <h2>COPI.CO</h2>
+      <p>Admin Portal — Staff Access Only</p>
+    </div>
+
+    <!-- TABS -->
+    <div class="auth-tabs">
+      <button class="auth-tab-btn active" id="tab-login" onclick="switchTab('login')">Login</button>
+      <button class="auth-tab-btn" id="tab-register" onclick="switchTab('register')">Register</button>
+    </div>
+
+    <!-- LOGIN FORM -->
+    <div id="login-form">
+      <form onsubmit="handleAdminLogin(event)">
+        <div class="admin-form-group">
+          <label for="login-user">Username</label>
+          <input type="text" id="login-user" class="admin-form-input" placeholder="Admin username" required>
+        </div>
+        <div class="admin-form-group">
+          <label for="login-pass">Password</label>
+          <input type="password" id="login-pass" class="admin-form-input" placeholder="Admin password" required>
+        </div>
+        <button type="submit" class="admin-form-btn">Sign In</button>
+      </form>
+    </div>
+
+    <!-- REGISTER FORM -->
+    <div id="register-form" style="display:none;">
+      <form onsubmit="handleAdminRegister(event)">
+        <div class="admin-form-group">
+          <label for="reg-name">Full Name</label>
+          <input type="text" id="reg-name" class="admin-form-input" placeholder="Staff full name" required>
+        </div>
+        <div class="admin-form-group">
+          <label for="reg-user">Username</label>
+          <input type="text" id="reg-user" class="admin-form-input" placeholder="Choose username" required>
+        </div>
+        <div class="admin-form-group">
+          <label for="reg-pass">Password</label>
+          <input type="password" id="reg-pass" class="admin-form-input" placeholder="Create password" required>
+        </div>
+        <button type="submit" class="admin-form-btn">Create Account</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function switchTab(tab) {
+      document.getElementById("tab-login").classList.toggle("active", tab === "login");
+      document.getElementById("tab-register").classList.toggle("active", tab === "register");
+      document.getElementById("login-form").style.display = tab === "login" ? "block" : "none";
+      document.getElementById("register-form").style.display = tab === "register" ? "block" : "none";
+    }
+
+    function handleAdminLogin(e) {
+      e.preventDefault();
+      const username = document.getElementById("login-user").value.trim();
+      const password = document.getElementById("login-pass").value;
+
+      const admins = JSON.parse(localStorage.getItem("copico_admins")) || [];
+
+      // Default admin account
+      if (admins.length === 0) {
+        admins.push({ fullname: "Admin", username: "admin", password: "admin123" });
+        localStorage.setItem("copico_admins", JSON.stringify(admins));
+      }
+
+      const admin = admins.find(a => a.username === username && a.password === password);
+      if (admin) {
+        localStorage.setItem("copico_admin_user", JSON.stringify(admin));
+        window.location.href = "dashboard.html";
+      } else {
+        alert("Invalid credentials. Default: admin / admin123");
+      }
+    }
+
+    function handleAdminRegister(e) {
+      e.preventDefault();
+      const fullname = document.getElementById("reg-name").value.trim();
+      const username = document.getElementById("reg-user").value.trim();
+      const password = document.getElementById("reg-pass").value;
+
+      const admins = JSON.parse(localStorage.getItem("copico_admins")) || [];
+      if (admins.some(a => a.username === username)) {
+        alert("Username already exists!");
+        return;
+      }
+
+      admins.push({ fullname, username, password });
+      localStorage.setItem("copico_admins", JSON.stringify(admins));
+      alert("Admin account created! You can now log in.");
+      switchTab("login");
+      document.getElementById("login-user").value = username;
+    }
+  </script>
+
+</body>
+</html>

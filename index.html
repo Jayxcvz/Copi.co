@@ -1,115 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Copi.co</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome to Copi.co</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    :root {
+      --primary: #4E342E;
+      --secondary: #795548;
+      --accent: #ffd27d;
+      --neutral: #FFF8E1;
+      --dark: #1E1715;
+      --white: #ffffff;
+      --shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
 
-    <link rel="stylesheet" href="style.css">
-</head>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-<body class="homepage">
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(rgba(30, 23, 21, 0.7), rgba(30, 23, 21, 0.85)), url('assets/bg.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: var(--white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      overflow-x: hidden;
+    }
 
-  <!-- GOOGLE FONT -->
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&display=swap" rel="stylesheet">
-  
+    .container {
+      width: 100%;
+      max-width: 900px;
+      text-align: center;
+      animation: fadeIn 1s ease-out;
+    }
 
-  <!-- FONT AWESOME -->
-  <link rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    .brand-section {
+      margin-bottom: 50px;
+    }
+
+    .logo-container img {
+      width: 90px;
+      height: auto;
+      filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3));
+      animation: float 4s ease-in-out infinite;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 72px;
+      font-weight: 700;
+      letter-spacing: 4px;
+      color: var(--neutral);
+      margin-top: 15px;
+      text-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    }
+
+    .tagline {
+      font-size: 18px;
+      font-weight: 300;
+      color: #dfd3cd;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 5px;
+    }
+
+    .portal-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 20px;
+    }
+
+    .portal-card {
+      background: rgba(255, 248, 225, 0.05);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 30px;
+      padding: 45px 30px;
+      text-decoration: none;
+      color: var(--white);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .portal-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,210,125,0.1), transparent);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .portal-card:hover {
+      transform: translateY(-12px);
+      background: rgba(255, 248, 225, 0.12);
+      border-color: rgba(255, 210, 125, 0.3);
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .portal-card:hover::before {
+      opacity: 1;
+    }
+
+    .portal-card i {
+      font-size: 60px;
+      color: var(--accent);
+      margin-bottom: 25px;
+      transition: transform 0.4s ease;
+    }
+
+    .portal-card:hover i {
+      transform: scale(1.15) rotate(-5deg);
+    }
+
+    .portal-card h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--neutral);
+      margin-bottom: 15px;
+    }
+
+    .portal-card p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #d1c4be;
+      max-width: 280px;
+    }
+
+    .enter-btn {
+      margin-top: 25px;
+      padding: 10px 24px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .portal-card:hover .enter-btn {
+      background: var(--accent);
+      color: var(--dark);
+      font-weight: 600;
+      box-shadow: 0 5px 15px rgba(255, 210, 125, 0.3);
+    }
+
+    footer {
+      position: absolute;
+      bottom: 30px;
+      font-size: 13px;
+      color: #8c7670;
+      letter-spacing: 1px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    @media (max-width: 768px) {
+      .portal-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+      }
+      h1 {
+        font-size: 50px;
+      }
+      .portal-card {
+        padding: 35px 20px;
+      }
+    }
+  </style>
 </head>
 <body>
 
-<header>
-
-  <!-- LOGO -->
-  <div class="logo">
-    <img src="logo.png" alt="Copi.co Logo">
-  </div>
-
-  <!-- BURGER BUTTON -->
-  <div class="menu-toggle" id="menu-toggle">
-    <i class="fas fa-bars"></i>
-  </div>
-
-  <!-- NAVIGATION -->
-  <nav id="navbar">
-
-    <ul>
-      <li><a href="menu.html">Menu</a></li>
-      <li><a href="orders.html">Orders</a></li>
-      <li><a href="settings.html">Settings</a></li>
-      <li><a href="about.html">About Us</a></li>
-    </ul>
-
-  </nav>
-
-<script>
-
-  const menuToggle =
-  document.getElementById("menu-toggle");
-
-  const navbar =
-  document.getElementById("navbar");
-
-  menuToggle.addEventListener("click", () => {
-
-    navbar.classList.toggle("active");
-
-  });
-
-</script>
-
-</header>
-
-  <!-- HERO -->
-  <section class="hero">
-
-    <div class="hero-content">
-
-      <!-- LEFT -->
-      <div class="hero-text">
-
-        <h1>COPI.CO</h1>
-
-        <p>
-          Welcome to Copi.co — your trusted retail shop for premium coffee-making ingredients and essentials. 
-          We provide high-quality coffee beans, syrups, milk alternatives, powders, sauces, and brewing supplies perfect for cafés, small businesses, and home brewers. 
-          Our goal is to make every cup special by offering affordable, fresh, and carefully selected products that help coffee lovers create delicious café-style drinks anytime. 
-          At Copi.co, we believe great coffee starts with great ingredients.
-        </p>
-
-        <div class="hero-buttons">
-
-    <a href="menu.html" class="primary-btn">
-        Shop Now
-    </a>
-
-</div>
-
+  <div class="container">
+    <div class="brand-section">
+      <div class="logo-container">
+        <img src="assets/logo.png" alt="Copi.co Logo">
       </div>
-
+      <h1>COPI.CO</h1>
+      <div class="tagline">Premium Coffee Ingredients & Essentials</div>
     </div>
 
-  </section>
+    <div class="portal-grid">
+      <!-- CUSTOMER PORTAL -->
+      <a href="customer/index.html" class="portal-card">
+        <i class="fas fa-shopping-bag"></i>
+        <h2>Customer Shop</h2>
+        <p>Browse our selection of premium coffee beans, syrups, milk alternatives, and brewing tools. Place your orders easily.</p>
+        <div class="enter-btn">
+          <span>Enter Shop</span>
+          <i class="fas fa-arrow-right"></i>
+        </div>
+      </a>
 
-  <!-- FOOTER -->
+      <!-- ADMIN PORTAL -->
+      <a href="admin/login.html" class="portal-card">
+        <i class="fas fa-user-tie"></i>
+        <h2>Admin Dashboard</h2>
+        <p>Secure login for staff. Manage coffee product inventory, monitor customer orders, review transactions, and inspect customer profiles.</p>
+        <div class="enter-btn">
+          <span>Staff Login</span>
+          <i class="fas fa-arrow-right"></i>
+        </div>
+      </a>
+    </div>
+  </div>
+
   <footer>
-
-    <div class="socials">
-
-      <h3>Follow Us!</h3>
-
-      <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-facebook"></i></a>
-      <a href="#"><i class="fab fa-tiktok"></i></a>
-
-    </div>
-
-    <div class="copyright">
-      © 2026 Copi.co | All rights reserved.
-    </div>
-
+    &copy; 2026 Copi.co | All rights reserved.
   </footer>
 
 </body>

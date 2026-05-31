@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Copi.co - Premium Coffee Essentials</title>
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <a href="index.html" class="logo">
+      <img src="../assets/logo.png" alt="Copi.co Logo">
+      <span class="logo-text">COPI.CO</span>
+    </a>
+
+    <div class="menu-toggle" id="menu-toggle">
+      <i class="fas fa-bars"></i>
+    </div>
+
+    <nav id="navbar">
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="orders.html">Orders</a></li>
+        <li><a href="settings.html">Settings</a></li>
+        <li><a href="about.html">About Us</a></li>
+      </ul>
+    </nav>
+
+    <div class="nav-actions">
+      <!-- Profile Button -->
+      <button class="icon-btn" id="user-profile-btn" title="Login / Register">
+        <i class="fas fa-user"></i>
+      </button>
+      <!-- Shopping Cart Trigger Button -->
+      <button class="icon-btn" onclick="toggleCart()" title="Shopping Cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="badge cart-badge">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1>COPI.CO</h1>
+        <p>
+          Welcome to Copi.co — your trusted retail shop for premium coffee-making ingredients and essentials. 
+          We provide high-quality coffee beans, syrups, milk alternatives, powders, sauces, and brewing supplies perfect for cafés, small businesses, and home brewers. 
+          Our goal is to make every cup special by offering affordable, fresh, and carefully selected products that help coffee lovers create delicious café-style drinks anytime. 
+          At Copi.co, we believe great coffee starts with great ingredients.
+        </p>
+        <div class="hero-buttons">
+          <a href="menu.html" class="primary-btn">
+            <i class="fas fa-coffee"></i> Shop Menu
+          </a>
+          <a href="about.html" class="secondary-btn">
+            Learn More
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-image">
+        <!-- Generates beautiful visual container -->
+        <img src="https://images.unsplash.com/photo-1507133750040-4a8f57021571?q=80&w=600" alt="Premium Coffee Beans">
+      </div>
+    </div>
+  </section>
+
+  <!-- SHOPPING CART SIDEBAR -->
+  <div class="cart-sidebar" id="cart-sidebar">
+    <div class="cart-header">
+      <h2><i class="fas fa-shopping-cart"></i> Your Cart</h2>
+      <button class="close-cart-btn" onclick="toggleCart()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="cart-items" id="cart-items-container">
+      <!-- Generated dynamically by script.js -->
+    </div>
+    <div class="cart-footer">
+      <div class="cart-summary-row">
+        <span>Subtotal</span>
+        <span id="cart-subtotal">₱0.00</span>
+      </div>
+      <button class="checkout-btn" id="cart-checkout-btn" onclick="openCheckoutModal()" disabled>
+        Proceed to Checkout
+      </button>
+    </div>
+  </div>
+
+  <!-- CHECKOUT MODAL -->
+  <div class="modal-overlay" id="checkout-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Checkout Form</h3>
+        <button class="close-modal-btn" onclick="closeCheckoutModal()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <form onsubmit="processCheckout(event)">
+        <div class="form-group">
+          <label for="customer-name">Full Name *</label>
+          <input type="text" id="customer-name" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label for="customer-email">Email Address</label>
+          <input type="email" id="customer-email" class="form-input">
+        </div>
+        <div class="form-group">
+          <label for="customer-phone">Phone Number *</label>
+          <input type="tel" id="customer-phone" class="form-input" required>
+        </div>
+        <div class="form-group">
+          <label for="customer-address">Delivery Address *</label>
+          <input type="text" id="customer-address" class="form-input" required>
+        </div>
+        
+        <div class="form-group">
+          <label>Payment Method</label>
+          <div class="select-payment">
+            <div class="payment-option selected" onclick="selectPaymentMethod(this, 'Cash')">
+              <i class="fas fa-money-bill-wave"></i>
+              <span>Cash</span>
+            </div>
+            <div class="payment-option" onclick="selectPaymentMethod(this, 'GCash')">
+              <i class="fas fa-mobile-alt"></i>
+              <span>GCash</span>
+            </div>
+            <div class="payment-option" onclick="selectPaymentMethod(this, 'Card')">
+              <i class="fas fa-credit-card"></i>
+              <span>Card</span>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="auth-btn">Place Order</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="socials">
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <div class="copyright">
+      &copy; 2026 Copi.co | All rights reserved.
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - Copi.co</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <a href="index.html" class="logo">
+      <img src="../assets/logo.png" alt="Copi.co Logo">
+      <span class="logo-text">COPI.CO</span>
+    </a>
+    <div class="menu-toggle" id="menu-toggle"><i class="fas fa-bars"></i></div>
+    <nav id="navbar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="menu.html">Menu</a></li>
+        <li><a href="orders.html">Orders</a></li>
+        <li><a href="settings.html">Settings</a></li>
+        <li><a href="about.html" class="active">About Us</a></li>
+      </ul>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="user-profile-btn" title="Login / Register"><i class="fas fa-user"></i></button>
+      <button class="icon-btn" onclick="toggleCart()" title="Shopping Cart">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="badge cart-badge">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ABOUT SECTION -->
+  <section class="section">
+    <h2 class="section-title">About Copi.co</h2>
+    <p class="section-subtitle">Crafted with passion. Brewed with love.</p>
+
+    <div class="about-text">
+      <p>
+        Welcome to <strong>Copi.co</strong> — your trusted retail shop for premium coffee-making ingredients and essentials.
+        We provide high-quality coffee beans, syrups, milk alternatives, powders, sauces, and brewing supplies perfect for
+        cafés, small businesses, and home brewers.
+      </p>
+      <br>
+      <p>
+        Our goal is to make every cup special by offering affordable, fresh, and carefully selected products that help coffee
+        lovers create delicious café-style drinks anytime. At Copi.co, we believe great coffee starts with great ingredients.
+      </p>
+    </div>
+
+    <!-- FEATURE HIGHLIGHTS -->
+    <div class="about-features">
+      <div class="about-feature">
+        <i class="fas fa-seedling"></i>
+        <h4>Premium Beans</h4>
+        <p>Carefully sourced coffee beans from the best farms, roasted to perfection for your daily cup.</p>
+      </div>
+      <div class="about-feature">
+        <i class="fas fa-truck-fast"></i>
+        <h4>Fast Delivery</h4>
+        <p>Get your coffee essentials delivered to your doorstep within 24–48 hours across the metro.</p>
+      </div>
+      <div class="about-feature">
+        <i class="fas fa-hand-holding-heart"></i>
+        <h4>Affordable Quality</h4>
+        <p>We believe premium coffee should be accessible to everyone — no overpricing, just fair value.</p>
+      </div>
+      <div class="about-feature">
+        <i class="fas fa-mug-hot"></i>
+        <h4>For Everyone</h4>
+        <p>Whether you're a café owner, a home brewer, or a barista student — we've got you covered.</p>
+      </div>
+      <div class="about-feature">
+        <i class="fas fa-leaf"></i>
+        <h4>Eco-Friendly</h4>
+        <p>We use sustainable packaging and support ethical farming practices for a better world.</p>
+      </div>
+      <div class="about-feature">
+        <i class="fas fa-headset"></i>
+        <h4>24/7 Support</h4>
+        <p>Our team is always available to help you with your orders, questions, and coffee needs.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CART SIDEBAR -->
+  <div class="cart-sidebar" id="cart-sidebar">
+    <div class="cart-header">
+      <h2><i class="fas fa-shopping-cart"></i> Your Cart</h2>
+      <button class="close-cart-btn" onclick="toggleCart()"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="cart-items" id="cart-items-container"></div>
+    <div class="cart-footer">
+      <div class="cart-summary-row"><span>Subtotal</span><span id="cart-subtotal">₱0.00</span></div>
+      <button class="checkout-btn" id="cart-checkout-btn" onclick="openCheckoutModal()" disabled>Proceed to Checkout</button>
+    </div>
+  </div>
+
+  <!-- CHECKOUT MODAL -->
+  <div class="modal-overlay" id="checkout-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Checkout Details</h3>
+        <button class="close-modal-btn" onclick="closeCheckoutModal()"><i class="fas fa-times"></i></button>
+      </div>
+      <form onsubmit="processCheckout(event)">
+        <div class="form-group"><label for="customer-name">Full Name *</label><input type="text" id="customer-name" class="form-input" required></div>
+        <div class="form-group"><label for="customer-email">Email Address</label><input type="email" id="customer-email" class="form-input"></div>
+        <div class="form-group"><label for="customer-phone">Phone Number *</label><input type="tel" id="customer-phone" class="form-input" required></div>
+        <div class="form-group"><label for="customer-address">Delivery Address *</label><input type="text" id="customer-address" class="form-input" required></div>
+        <div class="form-group">
+          <label>Payment Method</label>
+          <div class="select-payment">
+            <div class="payment-option selected" onclick="selectPaymentMethod(this, 'Cash')"><i class="fas fa-money-bill-wave"></i><span>Cash</span></div>
+            <div class="payment-option" onclick="selectPaymentMethod(this, 'GCash')"><i class="fas fa-mobile-alt"></i><span>GCash</span></div>
+            <div class="payment-option" onclick="selectPaymentMethod(this, 'Card')"><i class="fas fa-credit-card"></i><span>Card</span></div>
+          </div>
+        </div>
+        <button type="submit" class="auth-btn">Place Order</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="socials">
+      <a href="#"><i class="fab fa-instagram"></i></a>
+      <a href="#"><i class="fab fa-facebook"></i></a>
+      <a href="#"><i class="fab fa-tiktok"></i></a>
+    </div>
+    <div class="copyright">&copy; 2026 Copi.co | All rights reserved.</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
