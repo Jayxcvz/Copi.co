@@ -11,7 +11,7 @@
 :root {
   /* Core Coffee Palette */
   --primary: #4E342E;
-  --primary-light: #795548;
+  --primary-light: #a77d6e;
   --accent: #ffd27d;
   --accent-hover: #fcdfa7;
   --neutral-bg: #FFF8E1;
@@ -63,7 +63,7 @@ header {
   align-items: center;
   padding: 15px 40px;
   z-index: 999;
-  background: rgba(30, 23, 21, 0.4);
+  background: rgba(187, 147, 136, 0.4);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-light);
