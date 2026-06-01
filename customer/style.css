@@ -1403,11 +1403,7 @@ footer {
   to { opacity: 1; transform: translateY(0); }
 }
 
-@keyframes floatImg {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-15px); }
-  100% { transform: translateY(0px); }
-}
+
 
 /* Responsive */
 @media (max-width: 1024px) {

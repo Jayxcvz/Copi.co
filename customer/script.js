@@ -1,8 +1,6 @@
 // Copi.co Customer Script
 
-// ----------------------------------------------------
 // STATE MANAGEMENT & MOCK DATA
-// ----------------------------------------------------
 const defaultProducts = [
   { id: 1, name: "Espresso", category: "hot", price: 120, desc: "Strong premium coffee shot.", img: "https://pngimg.com/d/coffee_PNG9298.png" },
   { id: 2, name: "Latte", category: "hot", price: 150, desc: "Creamy milk coffee blend.", img: "https://pngimg.com/d/coffee_PNG16874.png" },
@@ -25,25 +23,21 @@ let orders = JSON.parse(localStorage.getItem("copico_orders")) || [];
 let currentUser = JSON.parse(localStorage.getItem("copico_current_user")) || null;
 let cart = JSON.parse(localStorage.getItem("copico_cart")) || [];
 
-// ----------------------------------------------------
 // AUTHENTICATION HELPER
-// ----------------------------------------------------
 function updateAuthNavbar() {
   const userBtn = document.getElementById("user-profile-btn");
   if (userBtn) {
     if (currentUser) {
       userBtn.innerHTML = `<i class="fas fa-sign-out-alt"></i>`;
       userBtn.title = `Logout (${currentUser.username})`;
-      userBtn.onclick = logoutUser;
     } else {
       userBtn.innerHTML = `<i class="fas fa-user"></i>`;
       userBtn.title = "Login / Register";
-      userBtn.onclick = () => window.location.href = "login.html";
     }
   }
 }
 
-function logoutUser() {
+function logout() {
   if (confirm("Do you want to log out?")) {
     localStorage.removeItem("copico_current_user");
     localStorage.removeItem("copico_cart");
@@ -54,9 +48,25 @@ function logoutUser() {
   }
 }
 
-// ----------------------------------------------------
+function logoutUser() {
+  logout();
+}
+
+// Global click delegation to handle login/logout navigation reliably
+document.addEventListener("click", (e) => {
+  const userBtn = e.target.closest("#user-profile-btn");
+  if (userBtn) {
+    e.preventDefault();
+    if (currentUser) {
+      logout();
+    } else {
+      window.location.href = "login.html";
+    }
+  }
+});
+
+
 // SHOPPING CART LOGIC
-// ----------------------------------------------------
 function toggleCart() {
   const sidebar = document.getElementById("cart-sidebar");
   if (sidebar) {
@@ -415,74 +425,7 @@ function changeTheme() {
   showToast(`Switched to ${isDark ? "Dark" : "Light"} mode`);
 }
 
-function changeBackground() {
-  const backgrounds = [
-    "linear-gradient(rgba(30, 23, 21, 0.7), rgba(30, 23, 21, 0.85))",
-    "linear-gradient(rgba(45, 30, 20, 0.8), rgba(45, 30, 20, 0.9))",
-    "linear-gradient(rgba(15, 10, 8, 0.75), rgba(15, 10, 8, 0.88))"
-  ];
 
-  let bgIdx = parseInt(localStorage.getItem("copico_bg_idx") || "0");
-  bgIdx = (bgIdx + 1) % backgrounds.length;
-  localStorage.setItem("copico_bg_idx", bgIdx.toString());
-
-  document.body.style.background = `${backgrounds[bgIdx]}, url('../assets/bg.png')`;
-  document.body.style.backgroundSize = "cover";
-  document.body.style.backgroundPosition = "center";
-  document.body.style.backgroundAttachment = "fixed";
-  showToast("Atmosphere changed!");
-}
-
-let isPlaying = false;
-function toggleMusic() {
-  const audio = document.getElementById("cafeMusic");
-  if (!audio) return;
-
-  const btn = document.getElementById("music-play-btn");
-
-  if (isPlaying) {
-    audio.pause();
-    isPlaying = false;
-    if (btn) btn.innerHTML = `<i class="fas fa-play"></i> Play Melody`;
-    showToast("Ambient music paused");
-  } else {
-    audio.play().then(() => {
-      isPlaying = true;
-      if (btn) btn.innerHTML = `<i class="fas fa-pause"></i> Pause Melody`;
-      showToast("Playing relaxing ambient music");
-    }).catch(err => {
-      alert("Please allow audio permissions in your browser.");
-    });
-  }
-}
-
-function showNotification() {
-  if (Notification.permission === "granted") {
-    new Notification("Copi.co Coffee Shop", {
-      body: "Order notifications enabled successfully!",
-      icon: "../assets/logo.png"
-    });
-  } else if (Notification.permission !== "denied") {
-    Notification.requestPermission().then(permission => {
-      if (permission === "granted") {
-        showNotification();
-      }
-    });
-  }
-  showToast("Notifications enabled!");
-}
-
-let fontSizeScale = 1;
-function changeFontSize() {
-  const scales = [1.0, 1.15, 0.85];
-  let fontIdx = parseInt(localStorage.getItem("copico_font_idx") || "0");
-  fontIdx = (fontIdx + 1) % scales.length;
-  localStorage.setItem("copico_font_idx", fontIdx.toString());
-
-  const scale = scales[fontIdx];
-  document.documentElement.style.fontSize = scale === 1.0 ? "100%" : `${scale * 100}%`;
-  showToast(`Text size scaled to ${scale * 100}%`);
-}
 
 function switchSettingsTab(tabId, btn) {
   // Deactivate all nav items
@@ -691,32 +634,8 @@ function showToast(message) {
   }, 2500);
 }
 
-
-// WINDOW INITIALIZATION
-function applySavedFontScale() {
-  const scales = [1.0, 1.15, 0.85];
-  const fontIdx = parseInt(localStorage.getItem("copico_font_idx") || "0");
-  const scale = scales[fontIdx];
-  document.documentElement.style.fontSize = scale === 1.0 ? "100%" : `${scale * 100}%`;
-}
-
-function applySavedBackground() {
-  const backgrounds = [
-    "linear-gradient(rgba(30, 23, 21, 0.7), rgba(30, 23, 21, 0.85))",
-    "linear-gradient(rgba(45, 30, 20, 0.8), rgba(45, 30, 20, 0.9))",
-    "linear-gradient(rgba(15, 10, 8, 0.75), rgba(15, 10, 8, 0.88))"
-  ];
-  const bgIdx = parseInt(localStorage.getItem("copico_bg_idx") || "0");
-  document.body.style.background = `${backgrounds[bgIdx]}, url('../assets/bg.png')`;
-  document.body.style.backgroundSize = "cover";
-  document.body.style.backgroundPosition = "center";
-  document.body.style.backgroundAttachment = "fixed";
-}
-
 window.addEventListener("DOMContentLoaded", () => {
   applySavedTheme();
-  applySavedFontScale();
-  applySavedBackground();
   updateAuthNavbar();
   updateCartBadge();
   renderCart();
