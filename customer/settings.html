@@ -36,37 +36,133 @@
 
   <!-- SETTINGS SECTION -->
   <section class="section">
-    <h2 class="section-title">Preferences</h2>
-    <p class="section-subtitle">Tailor the boutique café experience to your device and senses.</p>
+    <h2 class="section-title">Settings</h2>
+    <p class="section-subtitle">Manage your profile, security, and preferences.</p>
 
     <div class="settings-container-premium">
       <!-- Settings Left Sidebar Navigation -->
       <div class="settings-nav">
-        <button class="settings-nav-item active" onclick="switchSettingsTab('appearance', this)">
+        <button class="settings-nav-item active" onclick="switchSettingsTab('profile', this)">
+          <i class="fas fa-user-circle"></i>
+          <span>Profile</span>
+        </button>
+        <button class="settings-nav-item" onclick="switchSettingsTab('password', this)">
+          <i class="fas fa-lock"></i>
+          <span>Change Password</span>
+        </button>
+        <button class="settings-nav-item" onclick="switchSettingsTab('appearance', this)">
           <i class="fas fa-palette"></i>
           <span>Appearance</span>
         </button>
-        <button class="settings-nav-item" onclick="switchSettingsTab('ambiance', this)">
-          <i class="fas fa-music"></i>
-          <span>Ambiance & Audio</span>
-        </button>
         <button class="settings-nav-item" onclick="switchSettingsTab('notifications', this)">
-          <i class="fas fa-sliders"></i>
-          <span>Alerts & System</span>
+          <i class="fas fa-bell"></i>
+          <span>Notification Settings</span>
         </button>
       </div>
 
       <!-- Settings Right Content Pane -->
       <div class="settings-content">
         
+        <!-- Tab: Profile -->
+        <div id="settings-tab-profile" class="settings-pane active">
+          <h3 class="pane-title">Account Details</h3>
+          <p class="pane-desc">View and update your personal information.</p>
+          
+          <form id="profile-form" onsubmit="saveProfile(event)">
+            <div class="settings-form-row">
+              <div class="settings-form-group">
+                <label for="profile-firstname">First Name</label>
+                <div class="input-wrapper">
+                  <i class="fas fa-user"></i>
+                  <input type="text" id="profile-firstname" class="form-input" placeholder="Enter first name">
+                </div>
+              </div>
+              <div class="settings-form-group">
+                <label for="profile-lastname">Last Name</label>
+                <div class="input-wrapper">
+                  <i class="fas fa-user"></i>
+                  <input type="text" id="profile-lastname" class="form-input" placeholder="Enter last name">
+                </div>
+              </div>
+            </div>
+
+            <div class="settings-form-group">
+              <label for="profile-birthdate">Birth Date</label>
+              <div class="input-wrapper">
+                <i class="fas fa-calendar-alt"></i>
+                <input type="date" id="profile-birthdate" class="form-input">
+              </div>
+            </div>
+
+            <div class="settings-form-group">
+              <label for="profile-email">Email Address</label>
+              <div class="input-wrapper">
+                <i class="fas fa-envelope"></i>
+                <input type="email" id="profile-email" class="form-input" placeholder="Enter email address">
+              </div>
+            </div>
+
+            <div class="settings-form-group">
+              <label for="profile-mobile">Mobile Number</label>
+              <div class="input-wrapper">
+                <i class="fas fa-phone"></i>
+                <input type="tel" id="profile-mobile" class="form-input" placeholder="e.g. 09123456789">
+              </div>
+            </div>
+
+            <button type="submit" class="auth-btn" style="margin-top: 15px;">
+              <i class="fas fa-save"></i> Save Changes
+            </button>
+          </form>
+        </div>
+
+        <!-- Tab: Change Password -->
+        <div id="settings-tab-password" class="settings-pane">
+          <h3 class="pane-title">Change Password</h3>
+          <p class="pane-desc">Update your account password. Choose a strong password to keep your account secure.</p>
+          
+          <form id="password-form" onsubmit="changePassword(event)">
+            <div class="settings-form-group">
+              <label for="current-password">Current Password</label>
+              <div class="input-wrapper">
+                <i class="fas fa-lock"></i>
+                <input type="password" id="current-password" class="form-input" placeholder="Enter current password" required>
+                <i class="fas fa-eye pwd-toggle" onclick="togglePasswordVisibility('current-password')"></i>
+              </div>
+            </div>
+
+            <div class="settings-form-group">
+              <label for="new-password">New Password</label>
+              <div class="input-wrapper">
+                <i class="fas fa-key"></i>
+                <input type="password" id="new-password" class="form-input" placeholder="Enter new password" required>
+                <i class="fas fa-eye pwd-toggle" onclick="togglePasswordVisibility('new-password')"></i>
+              </div>
+            </div>
+
+            <div class="settings-form-group">
+              <label for="confirm-password">Confirm New Password</label>
+              <div class="input-wrapper">
+                <i class="fas fa-key"></i>
+                <input type="password" id="confirm-password" class="form-input" placeholder="Re-enter new password" required>
+                <i class="fas fa-eye pwd-toggle" onclick="togglePasswordVisibility('confirm-password')"></i>
+              </div>
+            </div>
+
+            <button type="submit" class="auth-btn" style="margin-top: 15px;">
+              <i class="fas fa-shield-alt"></i> Update Password
+            </button>
+          </form>
+        </div>
+
         <!-- Tab: Appearance -->
-        <div id="settings-tab-appearance" class="settings-pane active">
+        <div id="settings-tab-appearance" class="settings-pane">
           <h3 class="pane-title">Appearance</h3>
           <p class="pane-desc">Customize how Copi.co looks on your device.</p>
           
           <div class="setting-row">
             <div class="setting-info">
-              <h4>Dark Mode Overlay</h4>
+              <h4>Dark Mode</h4>
               <p>Reduce eye strain in low-light environments with a warm, dark mocha theme backdrop.</p>
             </div>
             <div class="setting-control">
@@ -76,64 +172,36 @@
               </label>
             </div>
           </div>
-
-          <div class="setting-row">
-            <div class="setting-info">
-              <h4>Atmospheric Backdrop</h4>
-              <p>Cycle between warm roasted-bean backdrops, deep brown gradients, and minimal canvas aesthetics.</p>
-            </div>
-            <div class="setting-control">
-              <button class="control-btn" onclick="changeBackground()">
-                <i class="fas fa-sync-alt"></i> Cycle Wallpaper
-              </button>
-            </div>
-          </div>
-
-          <div class="setting-row">
-            <div class="setting-info">
-              <h4>Accessible Scaling</h4>
-              <p>Enlarge or decrease typography scale throughout the storefront for optimal visual reading.</p>
-            </div>
-            <div class="setting-control">
-              <button class="control-btn" onclick="changeFontSize()">
-                <i class="fas fa-text-height"></i> Scale Fonts
-              </button>
-            </div>
-          </div>
         </div>
 
-        <!-- Tab: Ambiance & Audio -->
-        <div id="settings-tab-ambiance" class="settings-pane">
-          <h3 class="pane-title">Ambiance & Audio</h3>
-          <p class="pane-desc">Tune your acoustic environment for a relaxed, productive browsing session.</p>
-
-          <div class="setting-row">
-            <div class="setting-info">
-              <h4>Lofi Coffeehouse Ambient Track</h4>
-              <p>Relaxing acoustic coffee-shop loops designed to keep you focused while choosing your blends.</p>
-            </div>
-            <div class="setting-control">
-              <button class="control-btn" id="music-play-btn" onclick="toggleMusic()">
-                <i class="fas fa-play"></i> Play Melody
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Tab: Alerts & System -->
+        <!-- Tab: Notification Settings -->
         <div id="settings-tab-notifications" class="settings-pane">
-          <h3 class="pane-title">Alerts & System</h3>
-          <p class="pane-desc">Configure system alerts, active browser triggers, and clear temporary caches.</p>
+          <h3 class="pane-title">Notification Settings</h3>
+          <p class="pane-desc">Control how and when you receive notifications from Copi.co.</p>
 
           <div class="setting-row">
             <div class="setting-info">
-              <h4>Browser Order Push Notifications</h4>
-              <p>Get instant desktop system notifications when an admin approves or updates your coffee orders.</p>
+              <h4>Push Notifications</h4>
+              <p>Get instant browser push notifications when your order status changes or when there are new promotions.</p>
             </div>
             <div class="setting-control">
-              <button class="control-btn" onclick="showNotification()">
-                <i class="fas fa-bell"></i> Enable Alerts
-              </button>
+              <label class="switch-toggle">
+                <input type="checkbox" id="push-notif-toggle" onchange="togglePushNotifications()">
+                <span class="switch-slider"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="setting-row">
+            <div class="setting-info">
+              <h4>Email Notifications</h4>
+              <p>Receive order confirmations, delivery updates, and exclusive deals straight to your inbox.</p>
+            </div>
+            <div class="setting-control">
+              <label class="switch-toggle">
+                <input type="checkbox" id="email-notif-toggle" onchange="toggleEmailNotifications()">
+                <span class="switch-slider"></span>
+              </label>
             </div>
           </div>
 
@@ -153,11 +221,6 @@
       </div>
     </div>
   </section>
-
-  <!-- AUDIO -->
-  <audio id="cafeMusic" loop>
-    <source src="coffee-music.mp3" type="audio/mpeg">
-  </audio>
 
   <!-- CART SIDEBAR -->
   <div class="cart-sidebar" id="cart-sidebar">
@@ -200,9 +263,9 @@
   <!-- FOOTER -->
   <footer>
     <div class="socials">
-      <a href="#"><i class="fab fa-instagram"></i></a>
-      <a href="#"><i class="fab fa-facebook"></i></a>
-      <a href="#"><i class="fab fa-tiktok"></i></a>
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" title="Follow us on Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" title="Like us on Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" title="Follow us on TikTok"><i class="fab fa-tiktok"></i></a>
     </div>
     <div class="copyright">&copy; 2026 Copi.co | All rights reserved.</div>
   </footer>

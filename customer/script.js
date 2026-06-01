@@ -503,6 +503,155 @@ function switchSettingsTab(tabId, btn) {
   }
 }
 
+// Profile Management
+function loadProfile() {
+  if (!currentUser) return;
+  const users = JSON.parse(localStorage.getItem("copico_users")) || [];
+  const user = users.find(u => u.username === currentUser.username);
+  if (!user) return;
+
+  const firstname = document.getElementById("profile-firstname");
+  const lastname = document.getElementById("profile-lastname");
+  const birthdate = document.getElementById("profile-birthdate");
+  const email = document.getElementById("profile-email");
+  const mobile = document.getElementById("profile-mobile");
+
+  if (firstname) firstname.value = user.firstname || (user.fullname ? user.fullname.split(' ')[0] : '') || '';
+  if (lastname) lastname.value = user.lastname || (user.fullname && user.fullname.split(' ').length > 1 ? user.fullname.split(' ').slice(1).join(' ') : '') || '';
+  if (birthdate) birthdate.value = user.birthdate || '';
+  if (email) email.value = user.email || '';
+  if (mobile) mobile.value = user.mobile || '';
+}
+
+function saveProfile(event) {
+  event.preventDefault();
+  if (!currentUser) {
+    alert("Please log in first to update your profile.");
+    window.location.href = "login.html";
+    return;
+  }
+
+  const firstname = document.getElementById("profile-firstname").value.trim();
+  const lastname = document.getElementById("profile-lastname").value.trim();
+  const birthdate = document.getElementById("profile-birthdate").value;
+  const email = document.getElementById("profile-email").value.trim();
+  const mobile = document.getElementById("profile-mobile").value.trim();
+
+  const users = JSON.parse(localStorage.getItem("copico_users")) || [];
+  const userIdx = users.findIndex(u => u.username === currentUser.username);
+  if (userIdx === -1) return;
+
+  users[userIdx].firstname = firstname;
+  users[userIdx].lastname = lastname;
+  users[userIdx].fullname = `${firstname} ${lastname}`.trim();
+  users[userIdx].birthdate = birthdate;
+  users[userIdx].email = email;
+  users[userIdx].mobile = mobile;
+
+  localStorage.setItem("copico_users", JSON.stringify(users));
+  // Update current user session
+  currentUser = { ...currentUser, ...users[userIdx] };
+  localStorage.setItem("copico_current_user", JSON.stringify(currentUser));
+
+  showToast("Profile updated successfully!");
+}
+
+function changePassword(event) {
+  event.preventDefault();
+  if (!currentUser) {
+    alert("Please log in first.");
+    window.location.href = "login.html";
+    return;
+  }
+
+  const currentPass = document.getElementById("current-password").value;
+  const newPass = document.getElementById("new-password").value;
+  const confirmPass = document.getElementById("confirm-password").value;
+
+  const users = JSON.parse(localStorage.getItem("copico_users")) || [];
+  const user = users.find(u => u.username === currentUser.username);
+
+  if (!user || user.password !== currentPass) {
+    alert("Current password is incorrect.");
+    return;
+  }
+
+  if (newPass.length < 4) {
+    alert("New password must be at least 4 characters.");
+    return;
+  }
+
+  if (newPass !== confirmPass) {
+    alert("New password and confirmation do not match.");
+    return;
+  }
+
+  user.password = newPass;
+  localStorage.setItem("copico_users", JSON.stringify(users));
+
+  document.getElementById("current-password").value = '';
+  document.getElementById("new-password").value = '';
+  document.getElementById("confirm-password").value = '';
+
+  showToast("Password changed successfully!");
+}
+
+function togglePasswordVisibility(fieldId) {
+  const field = document.getElementById(fieldId);
+  if (!field) return;
+  const type = field.getAttribute("type") === "password" ? "text" : "password";
+  field.setAttribute("type", type);
+}
+
+// Notification Preferences
+function togglePushNotifications() {
+  const checkbox = document.getElementById("push-notif-toggle");
+  if (!checkbox) return;
+  const enabled = checkbox.checked;
+  localStorage.setItem("copico_push_notif", enabled ? "true" : "false");
+
+  if (enabled) {
+    if (Notification.permission === "granted") {
+      new Notification("Copi.co Coffee Shop", {
+        body: "Push notifications enabled!",
+        icon: "../assets/logo.png"
+      });
+      showToast("Push notifications enabled!");
+    } else if (Notification.permission !== "denied") {
+      Notification.requestPermission().then(permission => {
+        if (permission === "granted") {
+          showToast("Push notifications enabled!");
+        } else {
+          checkbox.checked = false;
+          localStorage.setItem("copico_push_notif", "false");
+          showToast("Permission denied for notifications.");
+        }
+      });
+    } else {
+      checkbox.checked = false;
+      localStorage.setItem("copico_push_notif", "false");
+      showToast("Notifications are blocked by your browser.");
+    }
+  } else {
+    showToast("Push notifications disabled.");
+  }
+}
+
+function toggleEmailNotifications() {
+  const checkbox = document.getElementById("email-notif-toggle");
+  if (!checkbox) return;
+  const enabled = checkbox.checked;
+  localStorage.setItem("copico_email_notif", enabled ? "true" : "false");
+  showToast(enabled ? "Email notifications enabled!" : "Email notifications disabled.");
+}
+
+function loadNotificationPreferences() {
+  const pushToggle = document.getElementById("push-notif-toggle");
+  const emailToggle = document.getElementById("email-notif-toggle");
+  if (pushToggle) pushToggle.checked = localStorage.getItem("copico_push_notif") === "true";
+  if (emailToggle) emailToggle.checked = localStorage.getItem("copico_email_notif") === "true";
+}
+
 function resetWebsite() {
   if (confirm("This will clear user login, orders, cart and reset all settings. Proceed?")) {
     localStorage.clear();
@@ -570,6 +719,7 @@ window.addEventListener("DOMContentLoaded", () => {
   applySavedBackground();
   updateAuthNavbar();
   updateCartBadge();
+  renderCart();
 
   // Set active link in nav
   const filename = window.location.pathname.split("/").pop();
@@ -584,10 +734,15 @@ window.addEventListener("DOMContentLoaded", () => {
   // Render view-specific pages
   if (document.getElementById("customer-menu-grid")) {
     renderMenu();
-    renderCart();
   }
   if (document.getElementById("customer-orders-list")) {
     renderOrdersHistory();
+  }
+
+  // Settings page initialization
+  if (document.getElementById("profile-form")) {
+    loadProfile();
+    loadNotificationPreferences();
   }
 
   // Burger Menu toggle
