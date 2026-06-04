@@ -114,13 +114,13 @@ function renderSalesChart() {
       datasets: [{
         label: "Sales (₱)",
         data: chartData,
-        borderColor: "#ffd27d",
-        backgroundColor: "rgba(255, 210, 125, 0.1)",
+        borderColor: "#b57a56",
+        backgroundColor: "rgba(181, 122, 86, 0.1)",
         borderWidth: 2.5,
         fill: true,
         tension: 0.4,
-        pointBackgroundColor: "#ffd27d",
-        pointBorderColor: "#0f0a08",
+        pointBackgroundColor: "#b57a56",
+        pointBorderColor: "#ffffff",
         pointBorderWidth: 2,
         pointRadius: 5,
         pointHoverRadius: 7
@@ -132,8 +132,8 @@ function renderSalesChart() {
       plugins: {
         legend: { display: false },
         tooltip: {
-          backgroundColor: "rgba(26, 18, 16, 0.95)",
-          titleColor: "#ffd27d",
+          backgroundColor: "rgba(44, 30, 28, 0.95)",
+          titleColor: "#b57a56",
           bodyColor: "#f5f0eb",
           borderColor: "rgba(255, 210, 125, 0.2)",
           borderWidth: 1,
@@ -143,11 +143,11 @@ function renderSalesChart() {
       },
       scales: {
         x: {
-          grid: { color: "rgba(255,255,255,0.03)" },
+          grid: { color: "rgba(0,0,0,0.05)" },
           ticks: { color: "#6b5f56", font: { size: 11 } }
         },
         y: {
-          grid: { color: "rgba(255,255,255,0.03)" },
+          grid: { color: "rgba(0,0,0,0.05)" },
           ticks: {
             color: "#6b5f56",
             font: { size: 11 },
