@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Coffee Menu - Copi.co</title>
+  <title>Our  Menu - Copi.co</title>
   <!-- Stylesheets -->
   <link rel="stylesheet" href="style.css">
   <!-- Font Awesome -->
@@ -14,7 +14,7 @@
   <!-- HEADER -->
   <header>
     <a href="index.html" class="logo">
-      <img src="../assets/logo.png" alt="Copi.co Logo">
+      <img src="../assets/copico_logo.png" alt="Copi.co Logo">
     </a>
 
     <div class="menu-toggle" id="menu-toggle">
@@ -51,13 +51,13 @@
     <div class="menu-controls">
       <div class="search-bar">
         <i class="fas fa-search"></i>
-        <input type="text" oninput="searchMenu(this.value)" placeholder="Search coffee drinks...">
+        <input type="text" oninput="searchMenu(this.value)" placeholder="Search Items...">
       </div>
 
       <div class="filter-tabs">
         <button class="filter-tab active" onclick="filterMenu('all', this)">All Products</button>
-        <button class="filter-tab" onclick="filterMenu('hot', this)">Hot Brews</button>
-        <button class="filter-tab" onclick="filterMenu('iced', this)">Iced / Cold</button>
+        <button class="filter-tab" onclick="filterMenu('equipment', this)">Equipment</button>
+        <button class="filter-tab" onclick="filterMenu('matcha', this)">Matcha</button>
       </div>
     </div>
 
@@ -66,6 +66,50 @@
       <!-- Injected by script.js -->
     </div>
   </section>
+
+  <!-- PRODUCT DETAIL MODAL -->
+  <div class="modal-overlay" id="product-detail-modal">
+    <div class="modal-content product-detail-content">
+      <button class="close-modal-btn" onclick="closeProductDetailModal()"><i class="fas fa-times"></i></button>
+      <div class="product-detail-layout">
+        <div class="product-detail-image">
+          <img id="detail-img" src="" alt="">
+        </div>
+        <div class="product-detail-info">
+          <h2 id="detail-name"></h2>
+          <p id="detail-desc" class="detail-description"></p>
+          <div class="detail-price" id="detail-price"></div>
+          
+          <div class="detail-options">
+            <div class="option-group" id="variant-group">
+              <label>Select Variant</label>
+              <div class="variant-chips" id="detail-variants"></div>
+            </div>
+            
+            <div class="option-group">
+              <label>Quantity</label>
+              <div class="detail-qty-control">
+                <button onclick="updateDetailQty(-1)">-</button>
+                <input type="number" id="detail-qty" value="1" min="1" readonly>
+                <button onclick="updateDetailQty(1)">+</button>
+              </div>
+            </div>
+
+            <div class="option-group">
+              <label>Grams</label>
+              <div class="variant-chips" id="detail-grams">
+                <div class="variant-chip selected" onclick="selectGram('250grams', this)">250 Grams</div>
+                <div class="variant-chip" onclick="selectGram('500grams', this)">500 Grams</div>
+                <div class="variant-chip" onclick="selectGram('1kilo', this)">1 Kilo</div>
+              </div>
+            </div>
+          </div>
+          
+          <button class="auth-btn" id="add-to-cart-detail-btn">Add to Cart</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- SHOPPING CART SIDEBAR -->
   <div class="cart-sidebar" id="cart-sidebar">

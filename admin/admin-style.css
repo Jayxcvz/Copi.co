@@ -62,7 +62,7 @@ body {
 }
 
 .sidebar-header img {
-  width: 38px;
+  width: 80px;
   height: auto;
 }
 
@@ -196,8 +196,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(253, 251, 247, 0.85);
-  backdrop-filter: blur(16px);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
   -webkit-backdrop-filter: blur(12px);
   position: sticky;
   top: 0;

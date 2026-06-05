@@ -2,20 +2,30 @@
 
 // STATE MANAGEMENT & MOCK DATA
 const defaultProducts = [
-  { id: 1, name: "Espresso", category: "hot", price: 120, desc: "Strong premium coffee shot.", img: "https://pngimg.com/d/coffee_PNG9298.png" },
-  { id: 2, name: "Latte", category: "hot", price: 150, desc: "Creamy milk coffee blend.", img: "https://pngimg.com/d/coffee_PNG16874.png" },
-  { id: 3, name: "Cappuccino", category: "hot", price: 160, desc: "Foamy classic coffee drink.", img: "https://pngimg.com/d/coffee_PNG16870.png" },
-  { id: 4, name: "Mocha", category: "hot", price: 170, desc: "Chocolate flavored coffee.", img: "https://pngimg.com/d/coffee_PNG16876.png" },
-  { id: 5, name: "Americano", category: "hot", price: 140, desc: "Smooth and bold coffee.", img: "https://pngimg.com/d/coffee_PNG16873.png" },
-  { id: 6, name: "Caramel Macchiato", category: "iced", price: 190, desc: "Sweet caramel espresso drink.", img: "https://pngimg.com/d/coffee_PNG16875.png" },
-  { id: 7, name: "Vanilla Latte", category: "iced", price: 180, desc: "Sweet vanilla creamy latte.", img: "https://pngimg.com/d/coffee_PNG9295.png" },
-  { id: 8, name: "Hazelnut Coffee", category: "hot", price: 175, desc: "Nutty flavored coffee blend.", img: "https://pngimg.com/d/coffee_PNG9299.png" },
-  { id: 9, name: "Iced Coffee", category: "iced", price: 160, desc: "Refreshing cold brew drink.", img: "https://pngimg.com/d/coffee_PNG16872.png" },
-  { id: 10, name: "Cold Brew", category: "iced", price: 200, desc: "Slow brewed smooth coffee.", img: "https://pngimg.com/d/coffee_PNG16877.png" }
+  { id: 1, name: "Espresso Machine", category: "equipment", price: 12500, desc: "Professional grade espresso machine.", img: "https://images.unsplash.com/photo-1559496413-f0cf0594877d?q=80&w=600", variants: ["Standard", "Pro"] },
+  { id: 2, name: "Ceramic Matcha Bowl", category: "matcha", price: 850, desc: "Traditional handmade matcha whisking bowl.", img: "https://images.unsplash.com/photo-1627435601361-ec25f6b8b08f?q=80&w=600", variants: ["Small", "Large"] },
+  { id: 3, name: "Bamboo Matcha Whisk", category: "matcha", price: 450, desc: "Authentic Chasen whisk for perfect froth.", img: "https://images.unsplash.com/photo-1627435601361-ec25f6b8b08f?q=80&w=600", variants: ["80-prong", "100-prong"] },
+  { id: 4, name: "Gooseneck Kettle", category: "equipment", price: 2200, desc: "Precision pour-over kettle.", img: "https://images.unsplash.com/photo-1603400521622-832113221262?q=80&w=600", variants: ["0.8L", "1.2L"] },
+  { id: 5, name: "Ceremonial Matcha Powder", category: "matcha", price: 1200, desc: "Premium grade stone-ground matcha.", img: "https://images.unsplash.com/photo-1627435601361-ec25f6b8b08f?q=80&w=600", variants: ["30g", "50g"] },
+  { id: 6, name: "Burr Coffee Grinder", category: "equipment", price: 4500, desc: "Adjustable burr grinder for consistent grounds.", img: "https://images.unsplash.com/photo-1559496413-f0cf0594877d?q=80&w=600", variants: ["Manual", "Electric"] },
+  { id: 7, name: "Matcha Sifter", category: "matcha", price: 350, desc: "Fine mesh sifter for lump-free matcha.", img: "https://images.unsplash.com/photo-1627435601361-ec25f6b8b08f?q=80&w=600", variants: ["Small", "Large"] },
+  { id: 8, name: "Hario V60 Dripper", category: "equipment", price: 1100, desc: "Classic pour-over coffee dripper.", img: "https://images.unsplash.com/photo-1603400521622-832113221262?q=80&w=600", variants: ["Size 01", "Size 02"] },
+  { id: 9, name: "Matcha Bamboo Scoop", category: "matcha", price: 150, desc: "Traditional Chashaku measuring scoop.", img: "https://images.unsplash.com/photo-1627435601361-ec25f6b8b08f?q=80&w=600", variants: ["Standard"] },
+  { id: 10, name: "French Press", category: "equipment", price: 1500, desc: "Stainless steel and glass coffee press.", img: "https://images.unsplash.com/photo-1559496413-f0cf0594877d?q=80&w=600", variants: ["3-cup", "8-cup"] },
+  { id: 11, name: "Aeropress", category: "equipment", price: 2000, desc: "Portable and versatile coffee maker.", img: "https://images.unsplash.com/photo-1559496413-f0cf0594877d?q=80&w=600", variants: ["Standard", "Go"] },
+  { id: 12, name: "Matcha Starter Kit", category: "matcha", price: 2500, desc: "Everything you need to start making matcha.", img: "https://images.unsplash.com/photo-1627435601361-ec25f6b8b08f?q=80&w=600", variants: ["Basic", "Premium"] },
+  { id: 13, name: "Chemex Coffeemaker", category: "equipment", price: 3000, desc: "Elegant pour-over coffee brewer.", img: "https://images.unsplash.com/photo-1603400521622-832113221262?q=80&w=600", variants: ["6-cup", "8-cup"] },
+  { id: 14, name: "Matcha Travel Set", category: "matcha", price: 1800, desc: "Compact set for matcha on the go.", img: "https://images.unsplash.com/photo-1627435601361-ec25f6b8b08f?q=80&w=600", variants: ["Green", "Black"] },
+  { id: 15, name: "Digital Coffee Scale", category: "equipment", price: 1000, desc: "Precision scale for brewing perfection.", img: "https://images.unsplash.com/photo-1559496413-f0cf0594877d?q=80&w=600", variants: ["Standard", "With Timer"] },
+  { id: 16, name: "Matcha Tea Caddy", category: "matcha", price: 600, desc: "Airtight container for storing matcha.", img: "https://images.unsplash.com/photo-1627435601361-ec25f6b8b08f?q=80&w=600", variants: ["Small", "Medium"] },
+  { id: 17, name: "Cold Brew Maker", category: "equipment", price: 2800, desc: "Easy-to-use system for smooth cold brew.", img: "https://images.unsplash.com/photo-1603400521622-832113221262?q=80&w=600", variants: ["1L", "1.5L"] },
+  { id: 18, name: "Matcha Spoon (Chashaku)", category: "matcha", price: 200, desc: "Traditional bamboo spoon for matcha powder.", img: "https://images.unsplash.com/photo-1627435601361-ec25f6b8b08f?q=80&w=600", variants: ["Standard"] }
 ];
 
 // Initialize localStorage DBs if empty
-if (!localStorage.getItem("copico_products")) {
+const storedProducts = JSON.parse(localStorage.getItem("copico_products"));
+// Force update if empty or if we need to reach the 18 items count
+if (!storedProducts || storedProducts.length < 18) {
   localStorage.setItem("copico_products", JSON.stringify(defaultProducts));
 }
 let products = JSON.parse(localStorage.getItem("copico_products"));
@@ -74,7 +84,7 @@ function toggleCart() {
   }
 }
 
-function addToCart(productId) {
+function addToCart(productId, variant = null, qty = 1) {
   if (!currentUser) {
     alert("Please log in first to add items to your cart!");
     window.location.href = "login.html";
@@ -84,16 +94,17 @@ function addToCart(productId) {
   const product = products.find(p => p.id === productId);
   if (!product) return;
 
-  const existingItem = cart.find(item => item.id === productId);
+  const existingItem = cart.find(item => item.id === productId && item.variant === variant);
   if (existingItem) {
-    existingItem.qty += 1;
+    existingItem.qty += qty;
   } else {
     cart.push({
       id: product.id,
-      name: product.name,
+      name: variant ? `${product.name} (${variant})` : product.name,
+      variant: variant,
       price: product.price,
       img: product.img,
-      qty: 1
+      qty: qty
     });
   }
 
@@ -294,7 +305,7 @@ function renderProductCards(items) {
   let html = "";
   items.forEach(p => {
     html += `
-      <div class="card">
+      <div class="card" onclick="openProductDetail(${p.id})">
         <div class="card-img-wrapper">
           <img src="${p.img}" alt="${p.name}" onerror="this.src='https://pngimg.com/d/coffee_PNG9298.png'">
         </div>
@@ -302,7 +313,7 @@ function renderProductCards(items) {
         <p>${p.desc}</p>
         <div class="price-row">
           <span>₱${p.price}</span>
-          <button onclick="addToCart(${p.id})">
+          <button onclick="event.stopPropagation(); addToCart(${p.id})">
             <i class="fas fa-shopping-cart"></i> Add Order
           </button>
         </div>
@@ -311,6 +322,75 @@ function renderProductCards(items) {
   });
   menuContainer.innerHTML = html;
 }
+
+let selectedVariant = null;
+let selectedGram = "250grams";
+
+function openProductDetail(productId) {
+  const product = products.find(p => p.id === productId);
+  if (!product) return;
+
+  selectedVariant = product.variants ? product.variants[0] : null;
+  
+  // Reset Grams selection for every new product modal
+  selectedGram = "250grams";
+  document.querySelectorAll("#detail-grams .variant-chip").forEach(c => {
+    c.classList.toggle("selected", c.textContent === "250grams");
+  });
+
+  document.getElementById("detail-img").src = product.img;
+  document.getElementById("detail-name").textContent = product.name;
+  document.getElementById("detail-desc").textContent = product.desc;
+  document.getElementById("detail-price").textContent = `₱${product.price}`;
+  document.getElementById("detail-qty").value = 1;
+
+  const variantContainer = document.getElementById("detail-variants");
+  const variantGroup = document.getElementById("variant-group");
+  
+  if (product.variants && product.variants.length > 0) {
+    variantGroup.style.display = "block";
+    variantContainer.innerHTML = product.variants.map(v => 
+      `<div class="variant-chip ${v === selectedVariant ? 'selected' : ''}" onclick="selectVariant('${v}', this)">${v}</div>`
+    ).join('');
+  } else {
+    variantGroup.style.display = "none";
+  }
+
+  document.getElementById("product-detail-modal").classList.add("active");
+  
+  const addBtn = document.getElementById("add-to-cart-detail-btn");
+  addBtn.onclick = () => {
+    const qty = parseInt(document.getElementById("detail-qty").value);
+    let finalVariant = selectedVariant || "";
+    if (selectedGram) finalVariant += (finalVariant ? " - " : "") + selectedGram;
+    addToCart(productId, finalVariant, qty);
+    closeProductDetailModal();
+  };
+}
+
+function selectVariant(variant, el) {
+  selectedVariant = variant;
+  document.querySelectorAll(".variant-chip").forEach(c => c.classList.remove("selected"));
+  el.classList.add("selected");
+}
+
+function selectGram(gram, el) {
+  selectedGram = gram;
+  document.querySelectorAll("#detail-grams .variant-chip").forEach(c => c.classList.remove("selected"));
+  el.classList.add("selected");
+}
+
+function updateDetailQty(change) {
+  const input = document.getElementById("detail-qty");
+  let val = parseInt(input.value) + change;
+  if (val < 1) val = 1;
+  input.value = val;
+}
+
+function closeProductDetailModal() {
+  document.getElementById("product-detail-modal").classList.remove("active");
+}
+
 
 function filterMenu(category, btn) {
   document.querySelectorAll(".filter-tab").forEach(b => b.classList.remove("active"));
