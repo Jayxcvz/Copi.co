@@ -13,7 +13,7 @@
 
   <!-- HEADER -->
   <header>
-    <a href="index.html" class="logo">
+    <a href="../index.html" class="logo">
       <img src="../assets/copico_logo.png" alt="Copi.co Logo">
     </a>
 
@@ -47,8 +47,18 @@
     <h2 class="section-title">Your Order History</h2>
     <p class="section-subtitle">Track your pending coffee orders and view past receipts.</p>
 
+    <div class="menu-controls">
+      <div class="filter-tabs">
+        <button class="filter-tab active" onclick="switchOrdersTab('pending', this)">Current Orders</button>
+        <button class="filter-tab" onclick="switchOrdersTab('completed', this)">Order History</button>
+      </div>
+    </div>
+
     <!-- ORDERS LIST CONTAINER -->
-    <div style="max-width: 650px; margin: 0 auto;" id="customer-orders-list">
+    <div style="max-width: 650px; margin: 0 auto;" id="customer-current-orders-list">
+      <!-- Injected by script.js -->
+    </div>
+    <div style="max-width: 650px; margin: 0 auto; display: none;" id="customer-completed-orders-list">
       <!-- Injected by script.js -->
     </div>
   </section>
@@ -126,9 +136,9 @@
   <!-- FOOTER -->
   <footer>
     <div class="socials">
-      <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" title="Follow us on Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" title="Like us on Facebook"><i class="fab fa-facebook"></i></a>
-      <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" title="Follow us on TikTok"><i class="fab fa-tiktok"></i></a>
+      <a href="https://www.instagram.com/copico" target="_blank" rel="noopener noreferrer" title="Follow us on Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://www.facebook.com/profile.php?id=61590599432325" target="_blank" rel="noopener noreferrer" title="Like us on Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.tiktok.com/@copico" target="_blank" rel="noopener noreferrer" title="Follow us on TikTok"><i class="fab fa-tiktok"></i></a>
     </div>
     <div class="copyright">
       &copy; 2026 Copi.co | All rights reserved.

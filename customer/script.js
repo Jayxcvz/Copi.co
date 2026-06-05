@@ -129,13 +129,13 @@ function addToCart(productId, variant = null, qty = 1, customPrice = null) {
   showToast(`${product.name} ${variant ? '(' + variant + ')' : ''} added to cart!`);
 }
 
-function updateCartQty(productId, newQty) {
-  const item = cart.find(i => i.id === productId);
+function updateCartQty(productId, variant, newQty) {
+  const item = cart.find(i => i.id === productId && i.variant === variant);
   if (!item) return;
 
   item.qty = parseInt(newQty);
   if (item.qty <= 0) {
-    cart = cart.filter(i => i.id !== productId);
+    cart = cart.filter(i => !(i.id === productId && i.variant === variant));
   }
 
   saveCart();
@@ -144,7 +144,7 @@ function updateCartQty(productId, newQty) {
 }
 
 function removeFromCart(productId) {
-  cart = cart.filter(i => i.id !== productId);
+  cart = cart.filter(i => i.id !== productId); // This should probably also filter by variant if present
   saveCart();
   renderCart();
   updateCartBadge();
@@ -326,8 +326,8 @@ function renderProductCards(items) {
         <p>${p.desc}</p>
         <div class="price-row">
           <span>₱${p.price}</span>
-          <button onclick="event.stopPropagation(); addToCart(${p.id})">
-            <i class="fas fa-shopping-cart"></i> Add Order
+          <button onclick="event.stopPropagation(); openProductDetail(${p.id})">
+            <i class="fas fa-shopping-cart"></i> Add to Cart
           </button>
         </div>
       </div>
@@ -440,12 +440,12 @@ function searchMenu(query) {
   renderProductCards(filtered);
 }
 
-function renderOrdersHistory() {
-  const orderList = document.getElementById("customer-orders-list");
-  if (!orderList) return;
+function renderUserOrders(statusFilter, containerId) {
+  const orderListContainer = document.getElementById(containerId);
+  if (!orderListContainer) return;
 
   if (!currentUser) {
-    orderList.innerHTML = `
+    orderListContainer.innerHTML = `
       <div class="notice">
         <p>Please <a href="login.html" style="color:var(--accent); font-weight:600;">log in</a> to see your order history.</p>
       </div>
@@ -454,10 +454,14 @@ function renderOrdersHistory() {
   }
 
   // Get active user's orders
-  const userOrders = orders.filter(o => o.username === currentUser.username);
+  let userOrders = orders.filter(o => o.username === currentUser.username);
+
+  if (statusFilter !== 'all') {
+    userOrders = userOrders.filter(o => o.status.toLowerCase() === statusFilter);
+  }
 
   if (userOrders.length === 0) {
-    orderList.innerHTML = `
+    orderListContainer.innerHTML = `
       <div class="notice">
         <p>You have not placed any orders yet. <a href="menu.html" style="color:var(--accent); font-weight:600;">Order Now</a></p>
       </div>
@@ -507,7 +511,23 @@ function renderOrdersHistory() {
     `;
   });
 
-  orderList.innerHTML = html;
+  orderListContainer.innerHTML = html;
+}
+
+function switchOrdersTab(status, btn) {
+  document.querySelectorAll(".filter-tab").forEach(b => b.classList.remove("active"));
+  btn.classList.add("active");
+
+  document.getElementById("customer-current-orders-list").style.display = "none";
+  document.getElementById("customer-completed-orders-list").style.display = "none";
+
+  if (status === 'pending') {
+    document.getElementById("customer-current-orders-list").style.display = "block";
+    renderUserOrders('pending', 'customer-current-orders-list');
+  } else if (status === 'completed') {
+    document.getElementById("customer-completed-orders-list").style.display = "block";
+    renderUserOrders('completed', 'customer-completed-orders-list');
+  }
 }
 
 // SETTINGS HANDLERS
@@ -765,7 +785,12 @@ window.addEventListener("DOMContentLoaded", () => {
     renderMenu();
   }
   if (document.getElementById("customer-orders-list")) {
-    renderOrdersHistory();
+    // Initialize orders page with current orders tab active
+    const currentOrdersTab = document.querySelector(".filter-tabs .filter-tab.active");
+    if (currentOrdersTab) {
+      const status = currentOrdersTab.getAttribute('onclick').match(/'([^']+)'/)[1];
+      switchOrdersTab(status, currentOrdersTab);
+    }
   }
 
   // Settings page initialization
