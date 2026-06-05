@@ -56,6 +56,7 @@
 
       <div class="filter-tabs">
         <button class="filter-tab active" onclick="filterMenu('all', this)">All Products</button>
+        <button class="filter-tab" onclick="filterMenu('beans', this)">Beans</button>
         <button class="filter-tab" onclick="filterMenu('equipment', this)">Equipment</button>
         <button class="filter-tab" onclick="filterMenu('matcha', this)">Matcha</button>
       </div>
@@ -92,15 +93,6 @@
                 <button onclick="updateDetailQty(-1)">-</button>
                 <input type="number" id="detail-qty" value="1" min="1" readonly>
                 <button onclick="updateDetailQty(1)">+</button>
-              </div>
-            </div>
-
-            <div class="option-group">
-              <label>Grams</label>
-              <div class="variant-chips" id="detail-grams">
-                <div class="variant-chip selected" onclick="selectGram('250grams', this)">250 Grams</div>
-                <div class="variant-chip" onclick="selectGram('500grams', this)">500 Grams</div>
-                <div class="variant-chip" onclick="selectGram('1kilo', this)">1 Kilo</div>
               </div>
             </div>
           </div>

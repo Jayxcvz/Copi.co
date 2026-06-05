@@ -241,7 +241,7 @@ function openAddProduct() {
   editingProductId = null;
   document.getElementById("product-modal-title").textContent = "Add New Product";
   document.getElementById("prod-name").value = "";
-  document.getElementById("prod-category").value = "hot";
+  document.getElementById("prod-category").value = "beans";
   document.getElementById("prod-price").value = "";
   document.getElementById("prod-desc").value = "";
   document.getElementById("prod-img").value = "";
@@ -256,7 +256,7 @@ function openEditProduct(id) {
   editingProductId = id;
   document.getElementById("product-modal-title").textContent = "Edit Product";
   document.getElementById("prod-name").value = p.name;
-  document.getElementById("prod-category").value = p.category || "hot";
+  document.getElementById("prod-category").value = p.category || "beans";
   document.getElementById("prod-price").value = p.price;
   document.getElementById("prod-desc").value = p.desc;
   document.getElementById("prod-img").value = p.img;
