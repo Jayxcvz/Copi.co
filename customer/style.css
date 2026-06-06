@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Playfair+Display:wght@700;900&family=Poppins:wght@300;400;500;600;700&family=Yeseva+One&display=swap');
 
 /* RESET */
 * {
@@ -207,15 +207,17 @@ nav ul li a.active {
 }
 
 .hero-text h1 {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 80px;
-  font-weight: 700;
+  font-family: 'Yeseva One', serif;
+  font-size: 88px;
+  font-weight: 400;
   line-height: 1.05;
   color: var(--neutral-bg);
-  letter-spacing: 2px;
-  text-transform: uppercase;
+  letter-spacing: -0.5px;
+  text-transform: none;
   margin-bottom: 20px;
-  text-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+  text-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  animation: heroFadeIn 1.5s cubic-bezier(0.22, 1, 0.36, 1) 0.2s forwards;
 }
 
 .hero-text p {
@@ -224,12 +226,16 @@ nav ul li a.active {
   color: var(--text-secondary);
   margin-bottom: 35px;
   max-width: 800px;
+  opacity: 0;
+  animation: heroFadeIn 1.5s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards;
 }
 
 .hero-buttons {
   display: flex;
   justify-content: flex-start;
   gap: 20px;
+  opacity: 0;
+  animation: heroFadeIn 1.5s cubic-bezier(0.22, 1, 0.36, 1) 0.6s forwards;
 }
 
 .primary-btn {
@@ -1491,6 +1497,11 @@ footer {
 /* Animations */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroFadeIn {
+  from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
