@@ -289,8 +289,8 @@ nav ul li a.active {
 
 /* Product Detail Modal Specifics */
 .product-detail-content {
-  max-width: 1500px;
-  width: 95%;
+  max-width: 1600px;
+  width: 96%;
   padding: 0;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.08) !important;

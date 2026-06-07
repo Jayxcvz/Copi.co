@@ -2,28 +2,100 @@
 
 // STATE MANAGEMENT & MOCK DATA
 const defaultProducts = [
-  { id: 1, name: "Arabica", category: "beans", price: 450, desc: "A smooth, aromatic coffee with bright acidity and notes of fruit, chocolate, and caramel.", img: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?q=80&w=600", variants: ["250g starter", "500g", "1kg"] },
-  { id: 2, name: "Robusta", category: "beans", price: 350, desc: "A bold, full-bodied coffee with earthy flavors, low acidity, and a strong caffeine kick.", img: "https://images.unsplash.com/photo-1580915411954-282cb1b0d780?q=80&w=600", variants: ["250g starter", "500g", "1kg"] },
-  { id: 3, name: "Liberica", category: "beans", price: 550, desc: "A rare coffee known for its smoky aroma, woody character, and distinctive fruity undertones.", img: "https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?q=80&w=600", variants: ["250g starter", "500g", "1kg"] },
-  { id: 4, name: "Excelsa", category: "beans", price: 480, desc: "A uniquely tart and fruity coffee with a complex flavor profile that adds depth to coffee blends.", img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=600", variants: ["250g starter", "500g", "1kg"] },
-  { id: 5, name: "Matcha (Ceremonial)", category: "matcha", price: 1200, desc: "The highest-quality matcha, offering a naturally sweet, smooth taste with a vibrant green color.", img: "https://images.unsplash.com/photo-1582782622744-8071a2bc9a0b?q=80&w=600", variants: ["50g", "250g", "500g", "1kg"] },
-  { id: 6, name: "Matcha (Premium)", category: "matcha", price: 850, desc: "A balanced matcha with rich flavor, mild bitterness, and a smooth finish, ideal for daily drinking.", img: "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?q=80&w=600", variants: ["50g", "250g", "500g", "1kg"] },
-  { id: 7, name: "Matcha (Culinary)", category: "matcha", price: 500, desc: "A robust, slightly bitter matcha designed to retain its flavor when used in lattes, baking, and desserts.", img: "https://images.unsplash.com/photo-1528667853120-7f415309605b?q=80&w=600", variants: ["50g", "250g", "500g", "1kg"] },
-  { id: 8, name: "French Press", category: "equipment", price: 1500, desc: "Classic glass and stainless steel plunger for full-bodied coffee.", img: "https://images.unsplash.com/photo-1544650558-d129650742d1?q=80&w=600", variants: ["3-cup", "8-cup"] },
-  { id: 9, name: "Moka Pot", category: "equipment", price: 1200, desc: "Iconic Italian stovetop espresso maker for a strong and intense brew.", img: "https://images.unsplash.com/photo-1594052119749-99458a95f0cf?q=80&w=600", variants: ["3-cup", "6-cup"] },
-  { id: 10, name: "V60 Dripper", category: "equipment", price: 800, desc: "Hario V60 ceramic dripper for a clean and flavorful pour-over experience.", img: "https://images.unsplash.com/photo-1544650558-d129650742d1?q=80&w=600", variants: ["Size 01", "Size 02"] },
-  { id: 11, name: "Drip Coffee Maker", category: "equipment", price: 2500, desc: "Reliable automatic machine for brewing a perfect pot of coffee.", img: "https://images.unsplash.com/photo-1521656693074-0ef32e80a5d5?q=80&w=600", variants: ["Standard"] },
-  { id: 12, name: "Pod Machine", category: "equipment", price: 4500, desc: "Speed and convenience in every cup with this single-serve brewer.", img: "https://images.unsplash.com/photo-1565452344518-47fca9946476?q=80&w=600", variants: ["Standard"] },
-  { id: 13, name: "Espresso Machine", category: "equipment", price: 12500, desc: "Semi-automatic machine for crafting barista-quality espresso at home.", img: "https://images.unsplash.com/photo-1559496413-f0cf0594877d?q=80&w=600", variants: ["Black", "Silver"] },
-  { id: 14, name: "Burr Grinder", category: "equipment", price: 3500, desc: "Precision burrs for a consistent grind size, essential for great coffee.", img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=600", variants: ["Manual", "Electric"] },
-  { id: 15, name: "Automatic Milk Frother", category: "equipment", price: 1800, desc: "Create café-quality foam for your lattes and cappuccinos instantly.", img: "https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?q=80&w=600", variants: ["Standard"] },
-  { id: 16, name: "Paper Filters", category: "equipment", price: 250, desc: "High-quality paper filters for a clean and sediment-free cup.", img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=600", variants: ["100pcs"] },
-  { id: 17, name: "Full Matcha Starter Set", category: "matcha", price: 2500, desc: "Everything needed: bowl, whisk, scoop, sifter, and ceremonial matcha.", img: "https://images.unsplash.com/photo-1627435601361-ec25f6b8b08f?q=80&w=600", variants: ["Standard"] },
-  { id: 18, name: "Premium Matcha Set", category: "matcha", price: 3500, desc: "Luxury collection featuring an artisan bowl and 100-prong bamboo whisk.", img: "https://images.unsplash.com/photo-1627435601361-ec25f6b8b08f?q=80&w=600", variants: ["Standard"] }
+  {
+    id: 1, name: "Arabica", category: "beans", price: 220, desc: "Smooth and sweet with bright acidity, fruity notes, and a hint of chocolate and caramel.", img: "../assets/arabica.png", variants: [
+      { name: "100g", price: 220 }, { name: "250g", price: 550 }, { name: "500g", price: 1100 }, { name: "1kg", price: 2050 }, { name: "Pods 10pcs", price: 400 }
+    ]
+  },
+  {
+    id: 2, name: "Robusta", category: "beans", price: 240, desc: "Bold and full-bodied with a bitter, earthy flavor, nutty undertones, and a strong aftertaste.", img: "../assets/robusta.png", variants: [
+      { name: "100g", price: 240 }, { name: "250g", price: 600 }, { name: "500g", price: 1250 }, { name: "1kg", price: 2475 }, { name: "Pods 10pcs", price: 550 }
+    ]
+  },
+  {
+    id: 3, name: "Liberica", category: "beans", price: 220, desc: "A rare variety with a distinct smoky, woody aroma and a unique jackfruit-like taste.", img: "../assets/liberica.png", variants: [
+      { name: "100g", price: 220 }, { name: "250g", price: 550 }, { name: "500g", price: 1100 }, { name: "1kg", price: 2050 }, { name: "Pods 10pcs", price: 400 }
+    ]
+  },
+  {
+    id: 4, name: "Excelsa", category: "beans", price: 160, desc: "Fruity and tart with wine-like complexity and a slightly woody, lingering finish.", img: "../assets/excelsa.png", variants: [
+      { name: "100g", price: 160 }, { name: "250g", price: 400 }, { name: "500g", price: 800 }, { name: "1kg", price: 1550 }, { name: "Pods 10pcs", price: 380 }
+    ]
+  },
+  {
+    id: 5, name: "Matcha (Ceremonial)", category: "matcha", price: 1250, desc: "Premium ceremonial-grade matcha with a naturally sweet, smooth taste and vibrant green color.", img: "../assets/matcha_ceremonial.png", variants: [
+      { name: "50g", price: 1250 }
+    ]
+  },
+  {
+    id: 6, name: "Matcha (Premium)", category: "matcha", price: 1200, desc: "Uji/Kyoto origin matcha with rich umami flavor and a balanced, smooth finish for daily use.", img: "../assets/matcha_premium.png", variants: [
+      { name: "50g", price: 1200 }
+    ]
+  },
+  {
+    id: 7, name: "Matcha (Culinary)", category: "matcha", price: 880, desc: "Best for milk-based drinks, baking, and desserts — robust flavor that holds up in any recipe.", img: "../assets/matcha_culinary2.jpg", variants: [
+      { name: "50g", price: 880 }
+    ]
+  },
+  {
+    id: 8, name: "French Press", category: "equipment", price: 3000, desc: "Classic plunger brewer for a full-bodied, rich coffee with natural oils preserved.", img: "https://images.unsplash.com/photo-1572119865084-43c285814d63?q=80&w=600", variants: [
+      { name: "Standard", price: 3000 }
+    ]
+  },
+  {
+    id: 9, name: "Moka Pot", category: "equipment", price: 3500, desc: "Italian stovetop brewer that produces a strong, espresso-like concentrate.", img: "../assets/moka_pot2.png", variants: [
+      { name: "Standard", price: 3500 }
+    ]
+  },
+  {
+    id: 10, name: "V60 Dripper", category: "equipment", price: 2000, desc: "Precision pour-over dripper for a clean, flavorful cup with aromatic clarity.", img: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=600", variants: [
+      { name: "Standard", price: 2000 }
+    ]
+  },
+  {
+    id: 11, name: "Drip Coffee Maker", category: "equipment", price: 8500, desc: "Automatic brewer for consistently smooth coffee at the push of a button.", img: "../assets/drip_coffee_maker.png", variants: [
+      { name: "Standard", price: 8500 }
+    ]
+  },
+  {
+    id: 12, name: "Pod Machine", category: "equipment", price: 9500, desc: "Single-serve convenience for quick, hassle-free coffee anytime.", img: "../assets/pod_machine.png", variants: [
+      { name: "Standard", price: 9500 }
+    ]
+  },
+  {
+    id: 13, name: "Espresso Machine", category: "equipment", price: 15000, desc: "Semi-automatic machine for crafting barista-quality espresso shots at home.", img: "../assets/espresso_machine.png", variants: [
+      { name: "Standard", price: 15000 }
+    ]
+  },
+  {
+    id: 14, name: "Burr Grinder", category: "equipment", price: 2400, desc: "Precision burr grinder for consistent, uniform grounds — essential for great coffee.", img: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=600", variants: [
+      { name: "Standard", price: 2400 }
+    ]
+  },
+  {
+    id: 15, name: "Automatic Milk Frother", category: "equipment", price: 3800, desc: "Create silky, café-quality foam for lattes and cappuccinos in seconds.", img: "https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?q=80&w=600", variants: [
+      { name: "Standard", price: 3800 }
+    ]
+  },
+  {
+    id: 16, name: "Paper Filters", category: "equipment", price: 300, desc: "High-quality filters for a clean, sediment-free cup every time.", img: "../assets/paper_filters.png", variants: [
+      { name: "100pcs", price: 300 }
+    ]
+  },
+  {
+    id: 17, name: "Full Matcha Starter Set", category: "matcha", price: 4000, desc: "Complete kit with bowl, whisk, scoop, sifter, and ceremonial matcha included.", img: "../assets/matcha_starter_set.jpg", variants: [
+      { name: "Standard", price: 4000 }
+    ]
+  },
+  {
+    id: 18, name: "Premium Matcha Set", category: "matcha", price: 7500, desc: "Luxury set featuring an artisan bowl and 100-prong bamboo whisk for the perfect brew.", img: "../assets/matcha_premium_set.jpg", variants: [
+      { name: "Standard", price: 7500 }
+    ]
+  }
 ];
 
 // Initialize localStorage DBs if empty
-const DB_VERSION = "1.1"; // Increment this number (e.g., 1.2) every time you change defaultProducts
+const DB_VERSION = "2.4"; // Increment this number every time you change defaultProducts
 const storedProducts = JSON.parse(localStorage.getItem("copico_products"));
 const currentVersion = localStorage.getItem("copico_db_version");
 
@@ -37,20 +109,11 @@ let orders = JSON.parse(localStorage.getItem("copico_orders")) || [];
 let currentUser = JSON.parse(localStorage.getItem("copico_current_user")) || null;
 let cart = JSON.parse(localStorage.getItem("copico_cart")) || [];
 
-// Helper for variant price multipliers
-function getVariantPriceMultiplier(category, variant) {
-  if (category === 'beans') {
-    if (variant === '250g starter') return 1.0;
-    if (variant === '500g') return 1.8;
-    if (variant === '1kg') return 3.2;
-  } else if (category === 'matcha') {
-    // Base price for matcha is for 50g
-    if (variant === '50g') return 1.0; 
-    if (variant === '250g') return 4.0; // 5x quantity, 4x price for discount
-    if (variant === '500g') return 7.5; // 10x quantity, 7.5x price for discount
-    if (variant === '1kg') return 14.0; // 20x quantity, 14x price for discount
-  }
-  return 1.0; // Default multiplier for other categories or unknown variants
+// Helper to get variant price directly from variant object
+function getVariantPrice(product, variantName) {
+  if (!product.variants || product.variants.length === 0) return product.price;
+  const variant = product.variants.find(v => v.name === variantName);
+  return variant ? variant.price : product.price;
 }
 
 // Global state for the product currently in the modal
@@ -342,15 +405,14 @@ function renderProductCards(items) {
 
 function updateProductModalDisplay() {
   if (!currentProductForModal) return;
-  
+
   let price = currentProductForModal.price;
-  
-  // Apply variant multiplier if a variant is selected and it's a consumable
-  if (selectedVariant && (currentProductForModal.category === 'beans' || currentProductForModal.category === 'matcha')) {
-    const multiplier = getVariantPriceMultiplier(currentProductForModal.category, selectedVariant);
-    price = Math.round(currentProductForModal.price * multiplier); // Base price * multiplier
+
+  // Use direct variant price if a variant is selected
+  if (selectedVariant) {
+    price = getVariantPrice(currentProductForModal, selectedVariant);
   }
-  
+
   document.getElementById("detail-price").textContent = `₱${price.toLocaleString()}`;
   return price;
 }
@@ -360,13 +422,8 @@ function openProductDetail(productId) {
   if (!product) return;
 
   currentProductForModal = product;
-  // Initialize selectedVariant to the first available variant, or null if none
-  selectedVariant = product.variants && product.variants.length > 0 ? product.variants[0] : null;
-  
-  // Hide grams-group (it's removed from HTML, but this ensures no JS errors if it was there)
-  // This line is now redundant as the grams-group is removed from HTML
-  // const gramsGroup = document.getElementById("grams-group");
-  // if (gramsGroup) gramsGroup.style.display = "none";
+  // Initialize selectedVariant to the first available variant name, or null if none
+  selectedVariant = product.variants && product.variants.length > 0 ? product.variants[0].name : null;
 
   // Ensure the variant group is visible if there are variants, otherwise hide it
   const variantGroup = document.getElementById("variant-group");
@@ -380,21 +437,19 @@ function openProductDetail(productId) {
   document.getElementById("detail-name").textContent = product.name;
   document.getElementById("detail-desc").textContent = product.desc;
   document.getElementById("detail-qty").value = 1;
-  
-  updateProductModalDisplay(); // Call the new display update function to set the initial price
+
+  updateProductModalDisplay(); // Set the initial price
 
   const variantContainer = document.getElementById("detail-variants");
-  
+
   if (product.variants && product.variants.length > 0) {
-    variantContainer.innerHTML = product.variants.map(v => 
-      `<div class="variant-chip ${v === selectedVariant ? 'selected' : ''}" onclick="selectVariant('${v}', this)">${v}</div>`
+    variantContainer.innerHTML = product.variants.map(v =>
+      `<div class="variant-chip ${v.name === selectedVariant ? 'selected' : ''}" onclick="selectVariant('${v.name}', this)">${v.name}</div>`
     ).join('');
-  } else {
-    // This is already handled above, but good to keep for clarity if structure changes
   }
 
   document.getElementById("product-detail-modal").classList.add("active");
-  
+
   const addBtn = document.getElementById("add-to-cart-detail-btn");
   addBtn.onclick = () => {
     const qty = parseInt(document.getElementById("detail-qty").value);
