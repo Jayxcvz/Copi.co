@@ -2,13 +2,13 @@
 
 // STATE MANAGEMENT & MOCK DATA
 const defaultProducts = [
-  { id: 1, name: "Arabica", category: "beans", price: 450, desc: "100% Arabica beans, known for their sweet, complex flavor profile.", img: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?q=80&w=600", variants: ["250g starter", "500g", "1kg"] },
-  { id: 2, name: "Robusta", category: "beans", price: 350, desc: "High-caffeine Robusta beans with a strong, earthy flavor and rich crema.", img: "https://images.unsplash.com/photo-1580915411954-282cb1b0d780?q=80&w=600", variants: ["250g starter", "500g", "1kg"] },
-  { id: 3, name: "Liberica", category: "beans", price: 550, desc: "Rare Liberica beans with a distinct smoky, floral aroma and fruity taste.", img: "https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?q=80&w=600", variants: ["250g starter", "500g", "1kg"] },
-  { id: 4, name: "Excelsa", category: "beans", price: 480, desc: "Fruity and tart Excelsa beans that add complexity to any coffee blend.", img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=600", variants: ["250g starter", "500g", "1kg"] },
-  { id: 5, name: "Matcha (Ceremonial)", category: "matcha", price: 1200, desc: "The highest grade of matcha, intended for traditional whisking with water.", img: "https://images.unsplash.com/photo-1582782622744-8071a2bc9a0b?q=80&w=600", variants: ["50g", "250g", "500g", "1kg"] },
-  { id: 6, name: "Matcha (Premium)", category: "matcha", price: 850, desc: "High-quality matcha suitable for daily drinking and premium lattes.", img: "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?q=80&w=600", variants: ["50g", "250g", "500g", "1kg"] },
-  { id: 7, name: "Matcha (Culinary)", category: "matcha", price: 500, desc: "Perfect for cooking, baking, and smoothies, offering a robust matcha flavor.", img: "https://images.unsplash.com/photo-1528667853120-7f415309605b?q=80&w=600", variants: ["50g", "250g", "500g", "1kg"] },
+  { id: 1, name: "Arabica", category: "beans", price: 450, desc: "A smooth, aromatic coffee with bright acidity and notes of fruit, chocolate, and caramel.", img: "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?q=80&w=600", variants: ["250g starter", "500g", "1kg"] },
+  { id: 2, name: "Robusta", category: "beans", price: 350, desc: "A bold, full-bodied coffee with earthy flavors, low acidity, and a strong caffeine kick.", img: "https://images.unsplash.com/photo-1580915411954-282cb1b0d780?q=80&w=600", variants: ["250g starter", "500g", "1kg"] },
+  { id: 3, name: "Liberica", category: "beans", price: 550, desc: "A rare coffee known for its smoky aroma, woody character, and distinctive fruity undertones.", img: "https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?q=80&w=600", variants: ["250g starter", "500g", "1kg"] },
+  { id: 4, name: "Excelsa", category: "beans", price: 480, desc: "A uniquely tart and fruity coffee with a complex flavor profile that adds depth to coffee blends.", img: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=600", variants: ["250g starter", "500g", "1kg"] },
+  { id: 5, name: "Matcha (Ceremonial)", category: "matcha", price: 1200, desc: "The highest-quality matcha, offering a naturally sweet, smooth taste with a vibrant green color.", img: "https://images.unsplash.com/photo-1582782622744-8071a2bc9a0b?q=80&w=600", variants: ["50g", "250g", "500g", "1kg"] },
+  { id: 6, name: "Matcha (Premium)", category: "matcha", price: 850, desc: "A balanced matcha with rich flavor, mild bitterness, and a smooth finish, ideal for daily drinking.", img: "https://images.unsplash.com/photo-1515823064-d6e0c04616a7?q=80&w=600", variants: ["50g", "250g", "500g", "1kg"] },
+  { id: 7, name: "Matcha (Culinary)", category: "matcha", price: 500, desc: "A robust, slightly bitter matcha designed to retain its flavor when used in lattes, baking, and desserts.", img: "https://images.unsplash.com/photo-1528667853120-7f415309605b?q=80&w=600", variants: ["50g", "250g", "500g", "1kg"] },
   { id: 8, name: "French Press", category: "equipment", price: 1500, desc: "Classic glass and stainless steel plunger for full-bodied coffee.", img: "https://images.unsplash.com/photo-1544650558-d129650742d1?q=80&w=600", variants: ["3-cup", "8-cup"] },
   { id: 9, name: "Moka Pot", category: "equipment", price: 1200, desc: "Iconic Italian stovetop espresso maker for a strong and intense brew.", img: "https://images.unsplash.com/photo-1594052119749-99458a95f0cf?q=80&w=600", variants: ["3-cup", "6-cup"] },
   { id: 10, name: "V60 Dripper", category: "equipment", price: 800, desc: "Hario V60 ceramic dripper for a clean and flavorful pour-over experience.", img: "https://images.unsplash.com/photo-1544650558-d129650742d1?q=80&w=600", variants: ["Size 01", "Size 02"] },
@@ -23,10 +23,14 @@ const defaultProducts = [
 ];
 
 // Initialize localStorage DBs if empty
+const DB_VERSION = "1.1"; // Increment this number (e.g., 1.2) every time you change defaultProducts
 const storedProducts = JSON.parse(localStorage.getItem("copico_products"));
-// Force update if empty, if we need to reach the 18 items count, or if names haven't been updated to the new list
-if (!storedProducts || storedProducts.length < 18 || (storedProducts[0] && storedProducts[0].category !== "beans")) {
+const currentVersion = localStorage.getItem("copico_db_version");
+
+// Force update if storage is empty or if the version has changed
+if (!storedProducts || currentVersion !== DB_VERSION) {
   localStorage.setItem("copico_products", JSON.stringify(defaultProducts));
+  localStorage.setItem("copico_db_version", DB_VERSION);
 }
 let products = JSON.parse(localStorage.getItem("copico_products"));
 let orders = JSON.parse(localStorage.getItem("copico_orders")) || [];
