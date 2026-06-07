@@ -288,8 +288,8 @@ nav ul li a.active {
 }
 
 /* Product Detail Modal Specifics */
-.product-detail-content {
-  max-width: 1600px;
+.modal-content.product-detail-content {
+  max-width: 900px;
   width: 96%;
   padding: 0;
   overflow: hidden;

@@ -24,21 +24,21 @@ const defaultProducts = [
   },
   {
     id: 5, name: "Matcha (Ceremonial)", category: "matcha", price: 1250, desc: "Premium ceremonial-grade matcha with a naturally sweet, smooth taste and vibrant green color.", img: "../assets/matcha_ceremonial.png", variants: [
-      { name: "50g", price: 1250 }
+      { name: "50g", price: 1250 }, { name: "100g", price: 2500 }, { name: "250g", price: 6250 }, { name: "500g", price: 12500 }, { name: "1kg", price: 25000 }
     ]
   },
   {
     id: 6, name: "Matcha (Premium)", category: "matcha", price: 1200, desc: "Uji/Kyoto origin matcha with rich umami flavor and a balanced, smooth finish for daily use.", img: "../assets/matcha_premium.png", variants: [
-      { name: "50g", price: 1200 }
+      { name: "50g", price: 1200 }, { name: "100g", price: 2400 }, { name: "250g", price: 6000 }, { name: "500g", price: 12000 }, { name: "1kg", price: 24000 }
     ]
   },
   {
     id: 7, name: "Matcha (Culinary)", category: "matcha", price: 880, desc: "Best for milk-based drinks, baking, and desserts — robust flavor that holds up in any recipe.", img: "../assets/matcha_culinary2.jpg", variants: [
-      { name: "50g", price: 880 }
+      { name: "50g", price: 880 }, { name: "100g", price: 1760 }, { name: "250g", price: 4400 }, { name: "500g", price: 8800 }, { name: "1kg", price: 17600 }
     ]
   },
   {
-    id: 8, name: "French Press", category: "equipment", price: 3000, desc: "Classic plunger brewer for a full-bodied, rich coffee with natural oils preserved.", img: "https://images.unsplash.com/photo-1572119865084-43c285814d63?q=80&w=600", variants: [
+    id: 8, name: "French Press", category: "equipment", price: 3000, desc: "Classic plunger brewer for a full-bodied, rich coffee with natural oils preserved.", img: "../assets/french_press.jpg", variants: [
       { name: "Standard", price: 3000 }
     ]
   },
@@ -48,7 +48,7 @@ const defaultProducts = [
     ]
   },
   {
-    id: 10, name: "V60 Dripper", category: "equipment", price: 2000, desc: "Precision pour-over dripper for a clean, flavorful cup with aromatic clarity.", img: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=600", variants: [
+    id: 10, name: "V60 Dripper", category: "equipment", price: 2000, desc: "Precision pour-over dripper for a clean, flavorful cup with aromatic clarity.", img: "../assets/v60_dripper.jpg", variants: [
       { name: "Standard", price: 2000 }
     ]
   },
@@ -68,7 +68,7 @@ const defaultProducts = [
     ]
   },
   {
-    id: 14, name: "Burr Grinder", category: "equipment", price: 2400, desc: "Precision burr grinder for consistent, uniform grounds — essential for great coffee.", img: "https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=600", variants: [
+    id: 14, name: "Burr Grinder", category: "equipment", price: 2400, desc: "Precision burr grinder for consistent, uniform grounds — essential for great coffee.", img: "../assets/burr_grinder.jpg", variants: [
       { name: "Standard", price: 2400 }
     ]
   },
@@ -95,7 +95,7 @@ const defaultProducts = [
 ];
 
 // Initialize localStorage DBs if empty
-const DB_VERSION = "2.4"; // Increment this number every time you change defaultProducts
+const DB_VERSION = "2.5"; // Increment this number every time you change defaultProducts
 const storedProducts = JSON.parse(localStorage.getItem("copico_products"));
 const currentVersion = localStorage.getItem("copico_db_version");
 
