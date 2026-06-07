@@ -73,7 +73,7 @@ const defaultProducts = [
     ]
   },
   {
-    id: 15, name: "Automatic Milk Frother", category: "equipment", price: 3800, desc: "Create silky, café-quality foam for lattes and cappuccinos in seconds.", img: "https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?q=80&w=600", variants: [
+    id: 15, name: "Automatic Milk Frother", category: "equipment", price: 3800, desc: "Create silky, café-quality foam for lattes and cappuccinos in seconds.", img: "https://images.unsplash.com/photo-1553909489-eb2175ef3f52?q=80&w=600", variants: [
       { name: "Standard", price: 3800 }
     ]
   },

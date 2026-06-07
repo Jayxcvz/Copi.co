@@ -291,6 +291,8 @@ nav ul li a.active {
 .modal-content.product-detail-content {
   max-width: 900px;
   width: 96%;
+  max-width: 1500px;
+  width: 95%;
   padding: 0;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.08) !important;
@@ -669,6 +671,7 @@ nav ul li a.active {
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
+  margin-bottom: 10px; /* Reduced to bring product name closer to the image */
 }
 
 .card img {
@@ -688,6 +691,7 @@ nav ul li a.active {
   font-weight: 600;
   color: var(--neutral-bg);
   margin-bottom: 8px;
+  margin-bottom: 4px; /* Reduced to tighten the layout */
 }
 
 .card p {
